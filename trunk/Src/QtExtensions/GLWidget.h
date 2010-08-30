@@ -1,14 +1,19 @@
 #pragma once
 
 #include <QtOpenGL>
+#include <Engine/GUI/IGuiManager.h>
 
-class GLWidget : public QGLWidget
+namespace Core { class CoreManager; }
+
+class GLWidget : public QGLWidget, public GUI::IGuiManager
 {
 public:
 	GLWidget( QWidget *parent = 0 );
 	virtual ~GLWidget();
 
 	void init();
+
+	virtual void center(int &x, int &y);
 
 protected:
 	virtual void glDraw();
@@ -23,4 +28,6 @@ protected:
 
 private:
 	virtual void mouseMoveEvent(QMouseEvent *);
+
+	Core::CoreManager *coreManager;
 };

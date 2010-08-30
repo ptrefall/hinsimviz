@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="src/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;Dependencies/include/;Dependencies/include/GL"
+				AdditionalIncludeDirectories="../src/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;../Depends/include/;../Depends/include/GL"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -117,7 +117,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="src/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;Dependencies/include/;Dependencies/include/GL"
+				AdditionalIncludeDirectories="../src/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;../Depends/include/;../Depends/include/GL"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -177,18 +177,18 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Src\main.cpp"
+				RelativePath="..\Src\main.cpp"
 				>
 			</File>
 			<Filter
 				Name="QtExtensions"
 				>
 				<File
-					RelativePath=".\Src\QtExtensions\GLWidget.cpp"
+					RelativePath="..\Src\QtExtensions\GLWidget.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\QtExtensions\GLWidget.h"
+					RelativePath="..\Src\QtExtensions\GLWidget.h"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
@@ -196,9 +196,9 @@
 						<Tool
 							Name="VCCustomBuildTool"
 							Description="Qt Meta Object Compiling QtExtensions\GLWidget.h..."
-							CommandLine="C:\Qt\4.6.3\bin\moc.exe .\Src\QtExtensions\GLWidget.h -o .\Src\QtTemp\moc\moc_GLWidget.cpp&#x0D;&#x0A;"
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\QtExtensions\GLWidget.h -o ..\Src\QtTemp\moc\moc_GLWidget.cpp&#x0D;&#x0A;"
 							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
-							Outputs=".\Src\QtTemp\moc\moc_GLWidget.cpp"
+							Outputs="..\Src\QtTemp\moc\moc_GLWidget.cpp"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -207,18 +207,18 @@
 						<Tool
 							Name="VCCustomBuildTool"
 							Description="Qt Meta Object Compiling QtExtensions\GLWidget.h..."
-							CommandLine="C:\Qt\4.6.3\bin\moc.exe .\Src\QtExtensions\GLWidget.h -o .\Src\QtTemp\moc\moc_GLWidget.cpp&#x0D;&#x0A;"
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\QtExtensions\GLWidget.h -o ..\Src\QtTemp\moc\moc_GLWidget.cpp&#x0D;&#x0A;"
 							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
-							Outputs=".\Src\QtTemp\moc\moc_GLWidget.cpp"
+							Outputs="..\Src\QtTemp\moc\moc_GLWidget.cpp"
 						/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Src\QtExtensions\MainWindow.cpp"
+					RelativePath="..\Src\QtExtensions\MainWindow.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Src\QtExtensions\MainWindow.h"
+					RelativePath="..\Src\QtExtensions\MainWindow.h"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
@@ -226,9 +226,9 @@
 						<Tool
 							Name="VCCustomBuildTool"
 							Description="Qt Meta Object Compiling QtExtensions\MainWindow.h..."
-							CommandLine="C:\Qt\4.6.3\bin\moc.exe .\Src\QtExtensions\MainWindow.h -o .\Src\QtTemp\moc\moc_MainWindow.cpp&#x0D;&#x0A;"
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\QtExtensions\MainWindow.h -o ..\Src\QtTemp\moc\moc_MainWindow.cpp&#x0D;&#x0A;"
 							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
-							Outputs=".\Src\QtTemp\moc\moc_MainWindow.cpp"
+							Outputs="..\Src\QtTemp\moc\moc_MainWindow.cpp"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -237,9 +237,9 @@
 						<Tool
 							Name="VCCustomBuildTool"
 							Description="Qt Meta Object Compiling QtExtensions\MainWindow.h..."
-							CommandLine="C:\Qt\4.6.3\bin\moc.exe .\Src\QtExtensions\MainWindow.h -o .\Src\QtTemp\moc\moc_MainWindow.cpp&#x0D;&#x0A;"
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\QtExtensions\MainWindow.h -o ..\Src\QtTemp\moc\moc_MainWindow.cpp&#x0D;&#x0A;"
 							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
-							Outputs=".\Src\QtTemp\moc\moc_MainWindow.cpp"
+							Outputs="..\Src\QtTemp\moc\moc_MainWindow.cpp"
 						/>
 					</FileConfiguration>
 				</File>
@@ -251,19 +251,19 @@
 					Name="MOC"
 					>
 					<File
-						RelativePath=".\Src\QtTemp\moc\moc_GLWidget.cpp"
+						RelativePath="..\Src\QtTemp\moc\moc_GLWidget.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\QtTemp\moc\moc_MainWindow.cpp"
+						RelativePath="..\Src\QtTemp\moc\moc_MainWindow.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\QtTemp\moc\moc_UiMainWindow.cpp"
+						RelativePath="..\Src\QtTemp\moc\moc_UiMainWindow.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\Src\QtTemp\moc\moc_UiMainWindow.h"
+						RelativePath="..\Src\QtTemp\moc\moc_UiMainWindow.h"
 						>
 					</File>
 				</Filter>
@@ -272,7 +272,7 @@
 				Name="QtUi"
 				>
 				<File
-					RelativePath=".\Src\QtUi\MainWindow.ui"
+					RelativePath="..\Src\QtUi\MainWindow.ui"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
@@ -280,9 +280,9 @@
 						<Tool
 							Name="VCCustomBuildTool"
 							Description="Qt User Interface Compiling QtUi/MainWindow.ui..."
-							CommandLine="C:\Qt\4.6.3\bin\uic.exe .\Src\QtUi\MainWindow.ui -o .\Src\QtTemp\moc\moc_UiMainWindow.h&#x0D;&#x0A;"
+							CommandLine="C:\Qt\4.6.3\bin\uic.exe ..\Src\QtUi\MainWindow.ui -o ..\Src\QtTemp\moc\moc_UiMainWindow.h&#x0D;&#x0A;"
 							AdditionalDependencies="C:\Qt\4.6.3\bin\uic.exe"
-							Outputs=".\Src\QtTemp\moc\moc_UiMainWindow.h"
+							Outputs="..\Src\QtTemp\moc\moc_UiMainWindow.h"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -291,9 +291,9 @@
 						<Tool
 							Name="VCCustomBuildTool"
 							Description="Qt User Interface Compiling QtUi/MainWindow.ui..."
-							CommandLine="C:\Qt\4.6.3\bin\uic.exe .\Src\QtUi\MainWindow.ui -o .\Src\QtTemp\moc\moc_UiMainWindow.h&#x0D;&#x0A;"
+							CommandLine="C:\Qt\4.6.3\bin\uic.exe ..\Src\QtUi\MainWindow.ui -o ..\Src\QtTemp\moc\moc_UiMainWindow.h&#x0D;&#x0A;"
 							AdditionalDependencies="C:\Qt\4.6.3\bin\uic.exe"
-							Outputs=".\Src\QtTemp\moc\moc_UiMainWindow.h"
+							Outputs="..\Src\QtTemp\moc\moc_UiMainWindow.h"
 						/>
 					</FileConfiguration>
 				</File>
