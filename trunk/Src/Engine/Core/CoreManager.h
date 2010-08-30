@@ -8,6 +8,9 @@ namespace Core
 	{
 	public:
 		CoreManager(GUI::IGuiManager *guiManager);
+		~CoreManager();
+
+		void frame();
 
 	private:
 		GUI::IGuiManager *guiManager;
