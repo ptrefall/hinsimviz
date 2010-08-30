@@ -1,4 +1,5 @@
 #include "GLWidget.h"
+#include <Engine/Core/CoreManager.h>
 
 GLWidget::GLWidget( QWidget *parent )
 : QGLWidget( QGLFormat( QGL::AlphaChannel | QGL::DoubleBuffer | QGL::DepthBuffer | QGL::Rgba | QGL::SampleBuffers | QGL::StereoBuffers), parent)
@@ -8,7 +9,7 @@ GLWidget::GLWidget( QWidget *parent )
 	//this->showFullScreen();
 	//this->grabMouse();
 
-	QRect rect = QApplication::desktop()->availableGeometry();
+	coreManager = new Core::CoreManager(this);
 }
 
 
@@ -19,6 +20,13 @@ GLWidget::~GLWidget()
 
 void GLWidget::init()
 {
+}
+
+void GLWidget::center(int &x, int &y)
+{
+	QRect rect = QApplication::desktop()->availableGeometry();
+	x = rect.center().x();
+	y = rect.center().y();
 }
 
 void GLWidget::glDraw() 
