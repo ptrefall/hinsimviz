@@ -53,6 +53,7 @@ void GLWidget::paintEvent(QPaintEvent *e)
 
 void GLWidget::paintGL() 
 {
+	coreManager->frame();
 }
 
 void GLWidget::paintOverlayGL()
