@@ -1,0 +1,21 @@
+<Object>
+	<Type>FPSCamera</Type>
+  <Nodes>
+    <Node>
+      <Type>Camera</Type>
+      <Properties>
+        <Property>
+          <Name>CameraState</Name>
+          <Value>1</Value>
+        </Property>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Components>
+    <Component>Move</Component>
+    <Component>Look</Component>
+    <Component>CameraStateChanger</Component>
+  </Components>
+	<Properties>
+	</Properties>
+</Object>
