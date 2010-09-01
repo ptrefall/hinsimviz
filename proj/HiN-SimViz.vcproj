@@ -305,10 +305,106 @@
 			<Filter
 				Name="XML"
 				>
+				<File
+					RelativePath="..\Resources\XML\controls_config.xml"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\XML\game_config.xml"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\XML\log_config.xml"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\XML\video_config.xml"
+					>
+				</File>
+				<Filter
+					Name="GameStates"
+					>
+					<File
+						RelativePath="..\Resources\XML\GameStates\Test.xml"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Objects"
+					>
+					<File
+						RelativePath="..\Resources\XML\Objects\Empty.xml"
+						>
+					</File>
+					<File
+						RelativePath="..\Resources\XML\Objects\FPSCamera.xml"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Script"
 				>
+				<Filter
+					Name="Components"
+					>
+					<File
+						RelativePath="..\Resources\Script\Components\Look.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\Resources\Script\Components\Thrust.lua"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="GameStates"
+					>
+					<Filter
+						Name="Test"
+						>
+						<File
+							RelativePath="..\Resources\Script\GameStates\Test\init.lua"
+							>
+						</File>
+					</Filter>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Shaders"
+				>
+				<File
+					RelativePath="..\Resources\Shader\button.fs"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\Shader\button.vs"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\Shader\minimal.fs"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\Shader\minimal.vs"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\Shader\scenePostProcess.fs"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\Shader\scenePostProcess.vs"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\Shader\textured.fs"
+					>
+				</File>
+				<File
+					RelativePath="..\Resources\Shader\textured.vs"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>

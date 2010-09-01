@@ -13,4 +13,5 @@ out vec4 out_Color0;
 void main(void)
 {	
 	out_Color0 = texture2D(uni_Color0Tex, ex_TexCoord.st);
+	//out_Color0 = vec4(0.0, 1.0, 0.0, 1.0);
 }

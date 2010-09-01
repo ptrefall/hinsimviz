@@ -90,10 +90,10 @@ void GLWidget::resizeGL(int w, int h)
 }
 
 
-/*void GLWidget::swapBuffers() 
+void GLWidget::swapBuffers() 
 {
 	QGLWidget::swapBuffers();
-}*/
+}
 
 
 void GLWidget::timerEvent(QTimerEvent *e) 

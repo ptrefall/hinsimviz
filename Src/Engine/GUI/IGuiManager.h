@@ -12,6 +12,7 @@ namespace GUI
 		virtual int getHeight() const = 0;
 		virtual int getDesktopWidth() const = 0;
 		virtual int getDesktopHeight() const = 0;
+		virtual void swapBuffers() = 0;
 	};
 }
 }

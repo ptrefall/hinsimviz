@@ -188,4 +188,7 @@ void CoreManager::init(const char *arg)
 
 void CoreManager::frame()
 {
+	sceneMgr->update(1.0);
+	sceneMgr->display();
+	guiManager->swapBuffers();
 }

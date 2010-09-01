@@ -18,6 +18,7 @@ public:
 	virtual int getHeight() const;
 	virtual int getDesktopWidth() const;
 	virtual int getDesktopHeight() const;
+	virtual void swapBuffers();
 
 protected:
 	virtual void glDraw();
@@ -27,8 +28,6 @@ protected:
 	virtual void paintOverlayGL();
 	virtual void resizeGL( int w, int h );
 	virtual void timerEvent( QTimerEvent *qte );
-
-	//virtual void swapBuffers();
 
 private:
 	virtual void mouseMoveEvent(QMouseEvent *);
