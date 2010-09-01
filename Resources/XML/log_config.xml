@@ -1,0 +1,6 @@
+<Config>
+  <Log>
+    <Filename>Engine.log</Filename>
+    <Level>Info</Level>
+  </Log>
+</Config>

@@ -1,0 +1,12 @@
+<Config>
+	<Video>
+		<Width>800</Width>
+		<Height>600</Height>
+		<Depth>16</Depth>
+		<R>0</R>
+		<G>0</G>
+		<B>0</B>
+		<Fullscreen>0</Fullscreen>
+		<VSync>0</VSync>
+	</Video>
+</Config>
