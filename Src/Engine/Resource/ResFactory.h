@@ -26,6 +26,7 @@ private:
 	ResManager *manager;
 
 	std::map<CL_String, IResource*> xmlResources;
+	std::map<CL_String, IResource*> binResources;
 };
 
 }

@@ -5,6 +5,7 @@
 
 #include "Root.h"
 #include "Camera.h"
+#include <Engine/Nodes/Flow3D.h>
 #include <Engine/Nodes/Plane.h>
 /*#include <Game/NodeManager/Cube.h>
 #include <Game/NodeManager/Sphere.h>
@@ -25,6 +26,7 @@ namespace Scene
 			factory->registerNode(Camera::getSType(), &Camera::create);
 
 			factory->registerNode(Nodes::Plane::getSType(), &Nodes::Plane::create);
+			factory->registerNode(Nodes::Flow3D::getSType(), &Nodes::Flow3D::create);
 
 			/*factory->registerNode(Game::Node::Cube::getSType(), &Game::Node::Cube::create);
 			factory->registerNode(Game::Node::Sphere::getSType(), &Game::Node::Sphere::create);

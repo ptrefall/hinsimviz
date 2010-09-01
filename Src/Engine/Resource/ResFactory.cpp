@@ -1,5 +1,6 @@
 #include "ResFactory.h"
 #include "XMLResource.h"
+#include "BinResource.h"
 
 using namespace Engine;
 using namespace Resource;
@@ -38,14 +39,23 @@ IResource *ResFactory::create(const char *fileName, const char *fileType)
 	if(creators == 0)
 		throw CL_Exception("ResourceCreator map has not been instanciated!");
 
-	//If we're trying to create a texture, but it's already been loaded into memory, don't do it twice!
+	//If we're trying to create a resource, but it's already been loaded into memory, don't do it twice!
 	bool isXml = false;
-	bool isTex = false;
+	bool isBin = false;
 	if(fileType == XMLResource::getType())
 	{
 		isXml = true;
 		std::map<CL_String, IResource*>::iterator it = xmlResources.find(fileName);
 		if(it != xmlResources.end())
+		{
+			return it->second;
+		}
+	}
+	else if(fileType == BinResource::getType())
+	{
+		isBin = true;
+		std::map<CL_String, IResource*>::iterator it = binResources.find(fileName);
+		if(it != binResources.end())
 		{
 			return it->second;
 		}
@@ -61,6 +71,10 @@ IResource *ResFactory::create(const char *fileName, const char *fileType)
 	if(resource && isXml)
 	{
 		xmlResources[fileName] = resource;
+	}
+	else if(resource && isBin)
+	{
+		binResources[fileName] = resource;
 	}
 	return resource;
 }

@@ -25,6 +25,8 @@ public:
 	virtual unsigned int getWidth() { return 0; }
 	virtual unsigned int getHeight() { return 0; }
 	virtual BYTE *getTexBits() { return 0; }
+
+	virtual CL_DataBuffer *getBuffer() const { return 0; }
 };
 
 }
