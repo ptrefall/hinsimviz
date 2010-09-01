@@ -30,8 +30,19 @@ int LogManager::init()
 	CL_String level = config->getString("Config/Log/Level");
 	logLevel = text_to_loglevel(level);
 
+	bool fileAlreadyExist = false;
+	fileAlreadyExist = CL_FileHelp::file_exists(fileName);
 	fileLogger = new CL_FileLogger(fileName);
 
+	//Make it easier to see one log session from another in the same file!
+	if(fileAlreadyExist)
+	{
+		log("", "", Log::L_TOP);
+		log("", "", Log::L_TOP);
+		log("", "", Log::L_TOP);
+		log("", "", Log::L_TOP);
+		log("", "", Log::L_TOP);
+	}
 	log("LogManager::Init", "-=START SESSION=-", Log::L_TOP);
 	return 0;
 }
@@ -107,7 +118,8 @@ void LogManager::log(const CL_String &category, const CL_String &msg, const LogL
 
 	CL_String type = cl_format("%1][%2", loglevel_to_text(logLevel), category);
 	cl_log_event(type, msg);
-	std::cout << "LOG: [" << type.c_str() << "] - " << msg.c_str() << std::endl;
+	//std::cout << "LOG: [" << type.c_str() << "] - " << msg.c_str() << std::endl;
+	CL_Console::write_line("LOG: [%1] - %2", type, msg);
 }
 
 void LogManager::log(const CL_String &category, const CL_String &msg, const CL_String &level)

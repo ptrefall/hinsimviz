@@ -53,6 +53,10 @@ int SceneManager::init()
 
 	root = factory->create("Root", CL_String()); //Placeholder
 
+	Node *test = this->create("Flow3D");
+	test->GetProperty<CL_String>("File") = "test.txt";
+	test->init();
+
 	camera = static_cast<Camera*>(factory->create("Camera", CL_String())); //Placeholder
 	camera->perspective(40.0f, 1.0f, 1.0f, 1000.0f);
 	camera->lookAt(CL_Vec3f(0.0f, 20.0f, 0.0f), 

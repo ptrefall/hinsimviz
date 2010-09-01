@@ -378,6 +378,14 @@
 				Name="Resource"
 				>
 				<File
+					RelativePath="..\Src\Engine\Resource\BinResource.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Engine\Resource\BinResource.h"
+					>
+				</File>
+				<File
 					RelativePath="..\Src\Engine\Resource\IResource.h"
 					>
 				</File>
@@ -633,6 +641,14 @@
 			<Filter
 				Name="Nodes"
 				>
+				<File
+					RelativePath="..\Src\Engine\Nodes\Flow3D.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Engine\Nodes\Flow3D.h"
+					>
+				</File>
 				<File
 					RelativePath="..\Src\Engine\Nodes\Plane.cpp"
 					>
