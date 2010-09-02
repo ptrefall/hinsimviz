@@ -340,6 +340,10 @@
 						RelativePath="..\Resources\XML\Objects\FPSCamera.xml"
 						>
 					</File>
+					<File
+						RelativePath="..\Resources\XML\Objects\SpinningCube.xml"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -349,7 +353,15 @@
 					Name="Components"
 					>
 					<File
+						RelativePath="..\Resources\Script\Components\IdleSpin.lua"
+						>
+					</File>
+					<File
 						RelativePath="..\Resources\Script\Components\Look.lua"
+						>
+					</File>
+					<File
+						RelativePath="..\Resources\Script\Components\Move.lua"
 						>
 					</File>
 					<File

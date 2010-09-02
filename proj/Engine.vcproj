@@ -165,6 +165,18 @@
 					RelativePath="..\Src\Engine\Core\CoreManager.h"
 					>
 				</File>
+				<File
+					RelativePath="..\Src\Engine\Core\ITimer.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Engine\Core\Win32Timer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Engine\Core\Win32Timer.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="GUI"
@@ -641,6 +653,14 @@
 			<Filter
 				Name="Nodes"
 				>
+				<File
+					RelativePath="..\Src\Engine\Nodes\Cube.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Engine\Nodes\Cube.h"
+					>
+				</File>
 				<File
 					RelativePath="..\Src\Engine\Nodes\Flow3D.cpp"
 					>

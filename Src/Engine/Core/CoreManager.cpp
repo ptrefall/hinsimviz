@@ -1,9 +1,13 @@
 #include "CoreManager.h"
 
+//Ifdef this if running on multiple platforms...
+#include "Win32Timer.h"
+
 #include <ClanLib/core.h>
 #include <GL/glew.h>
 #include <Engine/GUI/IGUIManager.h>
 #include <Engine/Resource/ResManager.h>
+#include <Engine/Resource/IResource.h>
 #include <Engine/Log/LogManager.h>
 #include <Engine/Events/EngineEventManager.h>
 #include <Engine/Scene/ObjectManager.h>
@@ -11,6 +15,7 @@
 #include <Engine/Script/ScriptManager.h>
 #include <Engine/Player/PlayerManager.h>
 #include <Engine/GameState/GameStateManager.h>
+#include <Engine/GameState/IGameState.h>
 #include <Engine/Events/EngineEvent.h>
 
 using namespace Engine;
@@ -19,7 +24,7 @@ using namespace Core;
 CoreManager::CoreManager(int argc, char *argv[], GUI::IGuiManager *guiManager)
 : setupCore(new CL_SetupCore()), 
   resMgr(NULL), sceneMgr(NULL), objMgr(NULL), playerMgr(NULL), gameStateMgr(NULL), scriptMgr(NULL),
-  engineEventMgr(NULL), logMgr(NULL)
+  engineEventMgr(NULL), logMgr(NULL), timer(NULL)
 {
 	CL_String arg = argv[0];
 	arg = arg.substr(0, arg.find_last_of("\\"));
@@ -111,6 +116,13 @@ CoreManager::~CoreManager()
 
 	delete setupCore;
 	setupCore = NULL;
+
+	if(timer)
+	{
+		timer->stop();
+		delete timer;
+		timer = NULL;
+	}
 }
 
 void CoreManager::init(const char *arg)
@@ -184,11 +196,39 @@ void CoreManager::init(const char *arg)
 	fail = gameStateMgr->init();
 	if(fail)
 		throw CL_Exception("Initializing the Game State Manager failed!");
+
+	//Initialize scene
+	logMgr->log("GameManager::init", "Loading Game Configuration from file", Engine::Log::L_INFO);
+
+	Resource::IResource *config = resMgr->create("game_config.xml", "XML");
+	CL_String startState = config->getString("Config/Game/StartState");
+	
+	logMgr->log("GameManager::init", cl_format("Start state is %1", startState), Engine::Log::L_INFO);
+	
+	Engine::GameState::IGameState *state = gameStateMgr->create(startState);
+	if(state)
+	{
+		gameStateMgr->changeState(state->getId());
+	}
+
+	logMgr->log("GameManager::init", "Finished loading Game Configuration from file", Engine::Log::L_INFO);
+
+	timer = new Win32Timer();
+	timer->start();
+}
+
+void CoreManager::resize(int w, int h)
+{
+	sceneMgr->reseize(w,h);
 }
 
 void CoreManager::frame()
 {
-	sceneMgr->update(1.0);
+	double dt = (float)timer->update();
+	if(dt > 100.0)
+		dt = 100.0; //Clamp at 100, so that we don't get insanse steps in certain situations that might occure
+
+	sceneMgr->update(dt);
 	sceneMgr->display();
 	guiManager->swapBuffers();
 }

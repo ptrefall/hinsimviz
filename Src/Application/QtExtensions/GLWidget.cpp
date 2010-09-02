@@ -87,6 +87,8 @@ void GLWidget::paintOverlayGL()
 
 void GLWidget::resizeGL(int w, int h) 
 {
+	if(coreManager)
+		coreManager->resize(w,h);
 }
 
 

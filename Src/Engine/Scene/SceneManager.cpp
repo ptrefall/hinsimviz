@@ -54,7 +54,7 @@ int SceneManager::init()
 	root = factory->create("Root", CL_String()); //Placeholder
 
 	Node *test = this->create("Flow3D");
-	test->GetProperty<CL_String>("File") = "test.txt";
+	test->GetProperty<CL_String>("File") = "flow.dat";
 	test->init();
 
 	camera = static_cast<Camera*>(factory->create("Camera", CL_String())); //Placeholder
@@ -70,6 +70,18 @@ int SceneManager::init()
 	sceneMaps.push_back(GL_COLOR_ATTACHMENT1);
 	scenePostProcess = new PostProcess("scenePostProcess", sceneMaps, coreMgr);
 	return 0;
+}
+
+void SceneManager::reseize(int w, int h)
+{
+	if(h == 0)
+		h = 1;
+	if(w == 0)
+		w = 1;
+
+	float ratio = (float)(1.0 * ((double)w/(double)h));
+	glViewport(0, 0, w, h);
+	camera->perspective(40.0f, ratio, 1.0f, 1000.0f);
 }
 
 Node *SceneManager::create(const CL_String &type, const CL_String &name)

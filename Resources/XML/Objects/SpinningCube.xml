@@ -1,0 +1,19 @@
+<Object>
+  <Type>SpinningCube</Type>
+  <Nodes>
+    <Node>Cube</Node>
+  </Nodes>
+  <Components>
+    <Component>IdleSpin</Component>
+  </Components>
+  <Properties>
+    <Property>
+      <Name>SpinVelocity</Name>
+      <Value>6.0</Value>
+    </Property>
+    <Property>
+      <Name>SpinDirection</Name>
+      <Value>0,1,0</Value>
+    </Property>
+  </Properties>
+</Object>

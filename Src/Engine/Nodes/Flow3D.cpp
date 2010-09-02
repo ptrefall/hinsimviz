@@ -122,4 +122,5 @@ void Flow3D::initTexCoords()
 void Flow3D::OnFileChanged(const CL_String &oldValue, const CL_String &newValue)
 {
 	bin = coreMgr->getResMgr()->create(newValue.c_str(), "BIN");
+	//coreMgr->getLogMgr()->log("Flow3D::OnFileChanged", bin->getBuffer()->get_data(), Log::L_DEBUG);
 }

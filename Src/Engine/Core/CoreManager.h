@@ -15,12 +15,14 @@ namespace Player { class PlayerManager; }
 namespace GameState { class GameStateManager; }
 namespace Core
 {
+	class ITimer;
 	class CoreManager
 	{
 	public:
 		CoreManager(int argc, char *argv[], GUI::IGuiManager *guiManager);
 		~CoreManager();
 
+		void resize(int w, int h);
 		void frame();
 		void exit() {}
 
@@ -56,7 +58,7 @@ namespace Core
 
 		CL_SetupCore *setupCore; // Initializes clanlib core lib when CoreManager is instanciated/constructed
 
-		//Utility::ITimer *timer;
+		ITimer *timer;
 		double timeAccumulator;
 		double timeStep;
 

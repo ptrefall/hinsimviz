@@ -18,6 +18,7 @@ public:
 	SceneManager(Core::CoreManager *coreMgr);
 	virtual ~SceneManager();
 
+	void reseize(int w, int h);
 	virtual int init();
 	virtual Node *create(const CL_String &type, const CL_String &name = CL_String());
 	virtual void registerForDelete(Node *node);

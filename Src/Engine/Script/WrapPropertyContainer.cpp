@@ -169,58 +169,41 @@ void WrapPropertyContainer::AddProperty(LuaObject self, LuaObject lName, LuaObje
 	}
 	else if(defValue.IsTable())
 	{
-		int indexes = 0;
-		float x = 0.0f;
-		float y = 0.0f;
-		float z = 0.0f;
-		float w = 0.0f;
-		try
-		{
-			x = (float)defValue.GetByName("x").ToNumber();
-			indexes++;
-		}
-		catch(const LuaPlus::LuaException &)
-		{
-		}
-		try
-		{
-			y = (float)defValue.GetByName("y").ToNumber();
-			indexes++;
-		}
-		catch(const LuaPlus::LuaException &)
-		{
-		}
-		try
-		{
-			z = (float)defValue.GetByName("z").ToNumber();
-			indexes++;
-		}
-		catch(const LuaPlus::LuaException &)
-		{
-		}
-		try
-		{
-			w = (float)defValue.GetByName("w").ToNumber();
-			indexes++;
-		}
-		catch(const LuaPlus::LuaException &)
-		{
-		}
+		bool hasX = false;
+		bool hasY = false;
+		bool hasZ = false;
+		bool hasW = false;
 
-		if(indexes == 2)
+		LuaObject xObj = defValue.GetByName("x");
+		if(xObj.IsNumber())
+			hasX = true;
+		
+		LuaObject yObj = defValue.GetByName("y");
+		if(yObj.IsNumber())
+			hasY = true;
+		
+		LuaObject zObj = defValue.GetByName("z");
+		if(zObj.IsNumber())
+			hasZ = true;
+		
+		LuaObject wObj = defValue.GetByName("w");
+		if(wObj.IsNumber())
+			hasW = true;
+
+		if(hasX && hasY && hasZ && hasW)
 		{
-			CL_Vec2f val = CL_Vec2f(x,y);
-			node->AddProperty<CL_Vec2f>(name, val);
+			CL_Vec4f val = CL_Vec4f((float)xObj.ToNumber(),(float)yObj.ToNumber(),(float)zObj.ToNumber(),(float)wObj.ToNumber());
+			node->AddProperty<CL_Vec4f>(name, val);
 		}
-		else if(indexes == 3)
+		else if(hasX && hasY && hasZ)
 		{
-			CL_Vec3f val = CL_Vec3f(x,y,z);
+			CL_Vec3f val = CL_Vec3f((float)xObj.ToNumber(),(float)yObj.ToNumber(),(float)zObj.ToNumber());
 			node->AddProperty<CL_Vec3f>(name, val);
 		}
-		if(indexes == 4)
+		else if(hasX && hasY)
 		{
-			CL_Vec4f val = CL_Vec4f(x,y,z,w);
-			node->AddProperty<CL_Vec4f>(name, val);
+			CL_Vec2f val = CL_Vec2f((float)xObj.ToNumber(),(float)yObj.ToNumber());
+			node->AddProperty<CL_Vec2f>(name, val);
 		}
 	}
 	return;
