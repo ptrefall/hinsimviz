@@ -4,19 +4,6 @@
   </Gui>
   <Scene>
     <Objects>
-      <Object>
-        <Type>Vehicle</Type>
-        <Name>PlayerVehicle</Name>
-        <Properties>
-          <Property>
-            <Name>Position</Name>
-            <Value>0,10,-400</Value>
-          </Property>
-        </Properties>
-      </Object>
-      <Object>
-        <Type>Terrain</Type>
-      </Object>
     </Objects>
   </Scene>
 </GameState>

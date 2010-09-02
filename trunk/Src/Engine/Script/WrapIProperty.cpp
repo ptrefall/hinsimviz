@@ -140,7 +140,56 @@ void WrapIProperty::initPropertyListener()
 LuaObject WrapIProperty::Get(LuaObject self)
 {
 	LuaObject lValue;
-	lValue.AssignString(coreMgr->getScriptMgr()->GetGlobalState()->Get(), property->ToString().c_str());
+
+	if(property->GetTypeId() == TypeSerializer::TYPE_BOOL)
+	{
+		lValue.AssignString(coreMgr->getScriptMgr()->GetGlobalState()->Get(), property->ToString().c_str());
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_VEC2)
+	{
+		Entity::Property<CL_Vec2f> *prop = static_cast<Entity::Property<CL_Vec2f>*>(property);
+		lValue.AssignNewTable(coreMgr->getScriptMgr()->GetGlobalState()->Get());
+		lValue.SetNumber("x", prop->Get().x);
+		lValue.SetNumber("y", prop->Get().y);
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_VEC3)
+	{
+		Entity::Property<CL_Vec3f> *prop = static_cast<Entity::Property<CL_Vec3f>*>(property);
+		lValue.AssignNewTable(coreMgr->getScriptMgr()->GetGlobalState()->Get());
+		lValue.SetNumber("x", prop->Get().x);
+		lValue.SetNumber("y", prop->Get().y);
+		lValue.SetNumber("z", prop->Get().z);
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_VEC4)
+	{
+		Entity::Property<CL_Vec4f> *prop = static_cast<Entity::Property<CL_Vec4f>*>(property);
+		lValue.AssignNewTable(coreMgr->getScriptMgr()->GetGlobalState()->Get());
+		lValue.SetNumber("x", prop->Get().x);
+		lValue.SetNumber("y", prop->Get().y);
+		lValue.SetNumber("z", prop->Get().z);
+		lValue.SetNumber("w", prop->Get().w);
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_STRING)
+	{
+		lValue.AssignString(coreMgr->getScriptMgr()->GetGlobalState()->Get(), property->ToString().c_str());
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_DOUBLE)
+	{
+		lValue.AssignString(coreMgr->getScriptMgr()->GetGlobalState()->Get(), property->ToString().c_str());
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_FLOAT)
+	{
+		lValue.AssignString(coreMgr->getScriptMgr()->GetGlobalState()->Get(), property->ToString().c_str());
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_INT)
+	{
+		lValue.AssignString(coreMgr->getScriptMgr()->GetGlobalState()->Get(), property->ToString().c_str());
+	}
+	else if(property->GetTypeId() == TypeSerializer::TYPE_UNSIGNED_INT)
+	{
+		lValue.AssignString(coreMgr->getScriptMgr()->GetGlobalState()->Get(), property->ToString().c_str());
+	}
+
 	return lValue;
 }
 
