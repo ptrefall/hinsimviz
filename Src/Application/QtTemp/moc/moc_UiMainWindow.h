@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created: Wed 1. Sep 10:54:29 2010
+** Created: Fri 3. Sep 14:43:29 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QDockWidget>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
@@ -40,7 +41,10 @@ public:
     QLabel *force_label;
     QMenuBar *menubar;
     QMenu *menu_File;
+    QMenu *menuObjects;
     QStatusBar *statusbar;
+    QDockWidget *properties;
+    QWidget *propertiesContents;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -79,12 +83,25 @@ public:
         menubar->setGeometry(QRect(0, 0, 1215, 21));
         menu_File = new QMenu(menubar);
         menu_File->setObjectName(QString::fromUtf8("menu_File"));
+        menuObjects = new QMenu(menubar);
+        menuObjects->setObjectName(QString::fromUtf8("menuObjects"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
+        properties = new QDockWidget(MainWindow);
+        properties->setObjectName(QString::fromUtf8("properties"));
+        properties->setAutoFillBackground(false);
+        properties->setFloating(false);
+        properties->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
+        properties->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+        propertiesContents = new QWidget();
+        propertiesContents->setObjectName(QString::fromUtf8("propertiesContents"));
+        properties->setWidget(propertiesContents);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), properties);
 
         menubar->addAction(menu_File->menuAction());
+        menubar->addAction(menuObjects->menuAction());
         menu_File->addAction(action_close);
 
         retranslateUi(MainWindow);
@@ -94,11 +111,13 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Space Odyssey", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Flow3D Viewer", 0, QApplication::UnicodeUTF8));
         action_close->setText(QApplication::translate("MainWindow", "&Close", 0, QApplication::UnicodeUTF8));
         action_close->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
         force_label->setText(QApplication::translate("MainWindow", "Force: ", 0, QApplication::UnicodeUTF8));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
+        menuObjects->setTitle(QApplication::translate("MainWindow", "Objects", 0, QApplication::UnicodeUTF8));
+        properties->setWindowTitle(QApplication::translate("MainWindow", "Properties", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

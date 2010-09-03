@@ -185,6 +185,10 @@
 					RelativePath="..\Src\Engine\GUI\IGuiManager.h"
 					>
 				</File>
+				<File
+					RelativePath="..\Src\Engine\GUI\IMainGuiManager.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Events"

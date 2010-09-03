@@ -4,27 +4,26 @@
 GLWidget::GLWidget( QWidget *parent )
 : QGLWidget( QGLFormat( QGL::AlphaChannel | QGL::DoubleBuffer | QGL::DepthBuffer | QGL::Rgba | QGL::SampleBuffers | QGL::StereoBuffers), parent)
 {
+	timerId = -1;
 	//this->setMouseTracking(true);
 	//this->setCursor( QCursor( Qt::BlankCursor ) );
 	//this->showFullScreen();
 	//this->grabMouse();
-	coreManager = NULL;
+	coreMgr = NULL;
 }
 
 
 GLWidget::~GLWidget() 
 {
 	//this->releaseMouse();
-	if(coreManager)
-	{
-		delete coreManager;
-		coreManager = NULL;
-	}
+	if(timerId != -1)
+		killTimer(timerId);
 }
 
-void GLWidget::init(int argc, char *argv[])
+void GLWidget::init(Engine::Core::CoreManager *coreMgr)
 {
-	coreManager = new Engine::Core::CoreManager(argc, argv, this);
+	this->coreMgr = coreMgr;
+	timerId = startTimer(0);
 }
 
 void GLWidget::center(int &x, int &y)
@@ -77,8 +76,8 @@ void GLWidget::paintEvent(QPaintEvent *e)
 
 void GLWidget::paintGL() 
 {
-	if(coreManager)
-		coreManager->frame();
+	if(coreMgr)
+		coreMgr->frame();
 }
 
 void GLWidget::paintOverlayGL()
@@ -87,8 +86,8 @@ void GLWidget::paintOverlayGL()
 
 void GLWidget::resizeGL(int w, int h) 
 {
-	if(coreManager)
-		coreManager->resize(w,h);
+	if(coreMgr)
+		coreMgr->resize(w,h);
 }
 
 
