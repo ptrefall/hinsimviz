@@ -11,7 +11,7 @@ public:
 	GLWidget( QWidget *parent = 0 );
 	virtual ~GLWidget();
 
-	void init(int argc, char *argv[]);
+	void init(Engine::Core::CoreManager *coreMgr);
 
 	virtual void center(int &x, int &y);
 	virtual int getWidth() const;
@@ -32,5 +32,6 @@ protected:
 private:
 	virtual void mouseMoveEvent(QMouseEvent *);
 
-	Engine::Core::CoreManager *coreManager;
+	Engine::Core::CoreManager *coreMgr;
+	int timerId;
 };

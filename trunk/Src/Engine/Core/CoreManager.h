@@ -4,7 +4,7 @@ class CL_SetupCore;
 
 namespace Engine
 {
-namespace GUI { class IGuiManager; }
+namespace GUI { class IMainGuiManager; class IGuiManager; }
 namespace Resource { class ResManager; }
 namespace Log { class LogManager; }
 namespace Events { class IEngineEventManager; }
@@ -19,14 +19,15 @@ namespace Core
 	class CoreManager
 	{
 	public:
-		CoreManager(int argc, char *argv[], GUI::IGuiManager *guiManager);
+		CoreManager(int argc, char *argv[], GUI::IMainGuiManager *mainGuiMgr, GUI::IGuiManager *guiMgr);
 		~CoreManager();
 
 		void resize(int w, int h);
 		void frame();
 		void exit() {}
 
-		GUI::IGuiManager *getGuiMgr() const { return guiManager; }
+		GUI::IMainGuiManager *getMainGuiMgr() const { return mainGuiMgr; }
+		GUI::IGuiManager *getGuiMgr() const { return guiMgr; }
 		Resource::ResManager *getResMgr() const { return resMgr; }
 		Events::IEngineEventManager *getEngineEventMgr() const { return engineEventMgr; }
 		Log::LogManager *getLogMgr() const { return logMgr; }
@@ -43,7 +44,8 @@ namespace Core
 	private:
 		void init(const char *arg);
 
-		GUI::IGuiManager *guiManager;
+		GUI::IMainGuiManager *mainGuiMgr;
+		GUI::IGuiManager *guiMgr;
 
 		Resource::ResManager *resMgr;
 		Events::IEngineEventManager *engineEventMgr;

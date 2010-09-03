@@ -1,11 +1,14 @@
 #pragma once
 
 #include <GL/GLee.h>
+#include <Engine/GUI/IMainGuiManager.h>
 
 #include <QtGui/QMainWindow>
 #include <QtTemp/moc/moc_UiMainWindow.h>
 
-class MainWindow : public QMainWindow, private Ui::MainWindow
+namespace Engine { namespace Core { class CoreManager; }}
+
+class MainWindow : public QMainWindow, private Ui::MainWindow, public Engine::GUI::IMainGuiManager
 {
 Q_OBJECT
 public:
@@ -16,11 +19,17 @@ public:
 	void update();
 	void mouseMoveEventP(QMouseEvent *event, int cx, int cy);
 
+	virtual void setCaptionText(const char *text);
+	virtual void addObject(const char *name);
+
 private:
 	virtual void keyPressEvent(QKeyEvent *);
     virtual void keyReleaseEvent(QKeyEvent *);
 	virtual void mouseMoveEvent(QMouseEvent *);
 
+	Engine::Core::CoreManager *coreMgr;
+
 private slots:
     void slotClose();
+	void slotObjectClicked();
 };

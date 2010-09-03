@@ -5,7 +5,8 @@
 
 #include <ClanLib/core.h>
 #include <GL/glew.h>
-#include <Engine/GUI/IGUIManager.h>
+#include <Engine/GUI/IMainGuiManager.h>
+#include <Engine/GUI/IGuiManager.h>
 #include <Engine/Resource/ResManager.h>
 #include <Engine/Resource/IResource.h>
 #include <Engine/Log/LogManager.h>
@@ -21,7 +22,7 @@
 using namespace Engine;
 using namespace Core;
 
-CoreManager::CoreManager(int argc, char *argv[], GUI::IGuiManager *guiManager)
+CoreManager::CoreManager(int argc, char *argv[], GUI::IMainGuiManager *mainGuiMgr, GUI::IGuiManager *guiMgr)
 : setupCore(new CL_SetupCore()), 
   resMgr(NULL), sceneMgr(NULL), objMgr(NULL), playerMgr(NULL), gameStateMgr(NULL), scriptMgr(NULL),
   engineEventMgr(NULL), logMgr(NULL), timer(NULL)
@@ -33,7 +34,8 @@ CoreManager::CoreManager(int argc, char *argv[], GUI::IGuiManager *guiManager)
 	//arg = arg.substr(0, arg.find_last_of("\\"));
 	arg += "\\Resources\\";
 
-	this->guiManager = guiManager;
+	this->mainGuiMgr = mainGuiMgr;
+	this->guiMgr = guiMgr;
 	
 	try
 	{
@@ -230,5 +232,6 @@ void CoreManager::frame()
 
 	sceneMgr->update(dt);
 	sceneMgr->display();
-	guiManager->swapBuffers();
+	guiMgr->swapBuffers();
+	mainGuiMgr->setCaptionText(cl_format("FPS: %1", timer->getFps()).c_str());
 }

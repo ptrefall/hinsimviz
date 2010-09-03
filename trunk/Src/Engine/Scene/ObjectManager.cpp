@@ -10,6 +10,7 @@
 #include <Depends/Entity/ComponentFactory.h>
 #include <Engine/Player/PlayerManager.h>
 #include <Engine/Player/IPlayer.h>
+#include <Engine/GUI/IMainGuiManager.h>
 
 using namespace Engine;
 using namespace Scene;
@@ -53,6 +54,10 @@ Object *ObjectManager::create(const CL_String &type, const CL_String &name)
 	Object *obj = factory->create(type, name);
 	coreMgr->getEngineEventMgr()->SendEvent(Engine::Events::EngineEvent("ObjectCreated", Engine::Events::EngineEventValue(obj)));
 	factory->addDataAndLogic(obj, type);
+	if(name != CL_String())
+		coreMgr->getMainGuiMgr()->addObject(name.c_str());
+	else
+		coreMgr->getMainGuiMgr()->addObject(type.c_str());
 
 	coreMgr->getLogMgr()->log("ObjectManager::Create", cl_format("Finished adding %1 object of type %2 to Scene", name, type), Log::L_INFO);
 	return obj;
