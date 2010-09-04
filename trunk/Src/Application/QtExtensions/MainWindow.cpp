@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include <Engine/Core/CoreManager.h>
+#include "ObjectQtWrapper.h"
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent, Qt::WFlags flags)
@@ -70,19 +71,10 @@ void MainWindow::setCaptionText(const char *text)
 	
 }
 
-void MainWindow::addObject(const char *name)
+void MainWindow::addObject(const char *name, Engine::Scene::Object *obj)
 {
 	//QMenu *menu = new QMenu(name);
-	QAction *action_object = new QAction(this);
-	QString objName = "Action";
-	objName += QString(name);
-	action_object->setObjectName(objName);
-	action_object->setText(name);
-	connect(action_object, SIGNAL( clicked() ), this, SLOT( slotObjectClicked() ));
-	this->menuObjects->addAction(action_object);
-}
 
-void MainWindow::slotObjectClicked()
-{
-	std::cout << "Object clicked!" << std::endl;
+	ObjectQtWrapper *objWrapper = new ObjectQtWrapper(obj);
+	this->menuObjects->addAction(objWrapper->getAction());
 }

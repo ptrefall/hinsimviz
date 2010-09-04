@@ -55,9 +55,9 @@ Object *ObjectManager::create(const CL_String &type, const CL_String &name)
 	coreMgr->getEngineEventMgr()->SendEvent(Engine::Events::EngineEvent("ObjectCreated", Engine::Events::EngineEventValue(obj)));
 	factory->addDataAndLogic(obj, type);
 	if(name != CL_String())
-		coreMgr->getMainGuiMgr()->addObject(name.c_str());
+		coreMgr->getMainGuiMgr()->addObject(name.c_str(), obj);
 	else
-		coreMgr->getMainGuiMgr()->addObject(type.c_str());
+		coreMgr->getMainGuiMgr()->addObject(type.c_str(), obj);
 
 	coreMgr->getLogMgr()->log("ObjectManager::Create", cl_format("Finished adding %1 object of type %2 to Scene", name, type), Log::L_INFO);
 	return obj;
