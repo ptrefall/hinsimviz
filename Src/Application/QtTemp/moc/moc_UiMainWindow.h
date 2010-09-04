@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created: Sat 4. Sep 18:14:19 2010
+** Created: Sat 4. Sep 23:11:44 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,7 +17,6 @@
 #include <QtGui/QDockWidget>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
@@ -38,13 +37,14 @@ public:
     QGridLayout *gridLayout_2;
     QSpacerItem *verticalSpacer;
     QSpacerItem *horizontalSpacer;
-    QLabel *force_label;
     QMenuBar *menubar;
     QMenu *menu_File;
     QMenu *menuObjects;
     QStatusBar *statusbar;
     QDockWidget *properties;
     QWidget *propertiesContents;
+    QWidget *gridLayoutWidget;
+    QGridLayout *propertiesLayout;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -63,16 +63,11 @@ public:
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         verticalSpacer = new QSpacerItem(20, 410, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_2->addItem(verticalSpacer, 1, 2, 1, 1);
+        gridLayout_2->addItem(verticalSpacer, 0, 2, 1, 1);
 
         horizontalSpacer = new QSpacerItem(531, 410, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer, 1, 1, 1, 1);
-
-        force_label = new QLabel(scene);
-        force_label->setObjectName(QString::fromUtf8("force_label"));
-
-        gridLayout_2->addWidget(force_label, 0, 1, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer, 0, 1, 1, 1);
 
 
         gridLayout->addWidget(scene, 0, 0, 1, 1);
@@ -97,6 +92,13 @@ public:
         properties->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
         propertiesContents = new QWidget();
         propertiesContents->setObjectName(QString::fromUtf8("propertiesContents"));
+        gridLayoutWidget = new QWidget(propertiesContents);
+        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
+        gridLayoutWidget->setGeometry(QRect(9, -1, 181, 571));
+        propertiesLayout = new QGridLayout(gridLayoutWidget);
+        propertiesLayout->setContentsMargins(2, 2, 2, 2);
+        propertiesLayout->setObjectName(QString::fromUtf8("propertiesLayout"));
+        propertiesLayout->setContentsMargins(0, 0, 0, 0);
         properties->setWidget(propertiesContents);
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), properties);
 
@@ -114,10 +116,9 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Flow3D Viewer", 0, QApplication::UnicodeUTF8));
         action_close->setText(QApplication::translate("MainWindow", "&Close", 0, QApplication::UnicodeUTF8));
         action_close->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
-        force_label->setText(QApplication::translate("MainWindow", "Force: ", 0, QApplication::UnicodeUTF8));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
         menuObjects->setTitle(QApplication::translate("MainWindow", "Objects", 0, QApplication::UnicodeUTF8));
-        properties->setWindowTitle(QApplication::translate("MainWindow", "Properties", 0, QApplication::UnicodeUTF8));
+        properties->setWindowTitle(QApplication::translate("MainWindow", "  Properties", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
