@@ -75,6 +75,6 @@ void MainWindow::addObject(const char *name, Engine::Scene::Object *obj)
 {
 	//QMenu *menu = new QMenu(name);
 
-	ObjectQtWrapper *objWrapper = new ObjectQtWrapper(obj);
+	ObjectQtWrapper *objWrapper = new ObjectQtWrapper(obj, this);
 	this->menuObjects->addAction(objWrapper->getAction());
 }

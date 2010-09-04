@@ -11,7 +11,7 @@ namespace Engine {
 	namespace Scene { class Object; }
 }
 
-class MainWindow : public QMainWindow, private Ui::MainWindow, public Engine::GUI::IMainGuiManager
+class MainWindow : public QMainWindow, public Ui::MainWindow, public Engine::GUI::IMainGuiManager
 {
 Q_OBJECT
 public:

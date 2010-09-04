@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'ObjectQtWrapper.h'
 **
-** Created: Sat 4. Sep 19:13:02 2010
+** Created: Sat 4. Sep 23:25:25 2010
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.3)
 **
 ** WARNING! All changes made in this file will be lost!
