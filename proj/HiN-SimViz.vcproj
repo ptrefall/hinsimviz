@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../Src/;../Src/Application/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;../Depends/include/;../Depends/include/GL"
+				AdditionalIncludeDirectories="../Src/;../Src/Application/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;../Depends/include/;../Depends/include/GL;../Src/Depends/ClanLib/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;GLEW_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -117,7 +117,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../Src/;../Src/Application/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;../Depends/include/;../Depends/include/GL"
+				AdditionalIncludeDirectories="../Src/;../Src/Application/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;../Depends/include/;../Depends/include/GL;../Src/Depends/ClanLib/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;GLEW_STATIC"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -243,6 +243,36 @@
 						/>
 					</FileConfiguration>
 				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\ObjectQtWrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\ObjectQtWrapper.h"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Qt Meta Object Compiling QtExtensions\ObjectQtWrapper.h..."
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\Application\QtExtensions\ObjectQtWrapper.h -o ..\Src\Application\QtTemp\moc\moc_ObjectQtWrapper.cpp&#x0D;&#x0A;"
+							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
+							Outputs="..\Src\Application\QtTemp\moc\moc_ObjectQtWrapper.cpp"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Qt Meta Object Compiling QtExtensions\ObjectQtWrapper.h..."
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\Application\QtExtensions\ObjectQtWrapper.h -o ..\Src\Application\QtTemp\moc\moc_ObjectQtWrapper.cpp&#x0D;&#x0A;"
+							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
+							Outputs="..\Src\Application\QtTemp\moc\moc_ObjectQtWrapper.cpp"
+						/>
+					</FileConfiguration>
+				</File>
 			</Filter>
 			<Filter
 				Name="QtTemp"
@@ -256,6 +286,10 @@
 					</File>
 					<File
 						RelativePath="..\Src\Application\QtTemp\moc\moc_MainWindow.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Src\Application\QtTemp\moc\moc_ObjectQtWrapper.cpp"
 						>
 					</File>
 					<File

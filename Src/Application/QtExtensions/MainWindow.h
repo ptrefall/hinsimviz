@@ -6,7 +6,10 @@
 #include <QtGui/QMainWindow>
 #include <QtTemp/moc/moc_UiMainWindow.h>
 
-namespace Engine { namespace Core { class CoreManager; }}
+namespace Engine { 
+	namespace Core { class CoreManager; }
+	namespace Scene { class Object; }
+}
 
 class MainWindow : public QMainWindow, private Ui::MainWindow, public Engine::GUI::IMainGuiManager
 {
@@ -20,7 +23,7 @@ public:
 	void mouseMoveEventP(QMouseEvent *event, int cx, int cy);
 
 	virtual void setCaptionText(const char *text);
-	virtual void addObject(const char *name);
+	virtual void addObject(const char *name, Engine::Scene::Object *obj);
 
 private:
 	virtual void keyPressEvent(QKeyEvent *);
@@ -31,5 +34,4 @@ private:
 
 private slots:
     void slotClose();
-	void slotObjectClicked();
 };
