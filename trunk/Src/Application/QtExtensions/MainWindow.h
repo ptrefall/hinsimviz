@@ -25,6 +25,8 @@ public:
 	virtual void setCaptionText(const char *text);
 	virtual void addObject(const char *name, Engine::Scene::Object *obj);
 
+	QGridLayout *propertiesLayout;
+
 private:
 	virtual void keyPressEvent(QKeyEvent *);
     virtual void keyReleaseEvent(QKeyEvent *);

@@ -4,7 +4,7 @@
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent, Qt::WFlags flags)
-: QMainWindow(parent, flags), coreMgr(NULL)
+: QMainWindow(parent, flags), coreMgr(NULL), propertiesLayout(NULL)
 {
     setupUi(this);
 	connect(action_close, SIGNAL( triggered() ), this, SLOT( slotClose() ));

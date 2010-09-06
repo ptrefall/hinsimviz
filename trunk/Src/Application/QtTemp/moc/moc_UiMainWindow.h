@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created: Sat 4. Sep 23:11:44 2010
+** Created: Mon 6. Sep 12:20:00 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,7 +20,6 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
-#include <QtGui/QSpacerItem>
 #include <QtGui/QStatusBar>
 #include <QtGui/QWidget>
 #include "QtExtensions/GLWidget.h"
@@ -35,16 +34,13 @@ public:
     QGridLayout *gridLayout;
     GLWidget *scene;
     QGridLayout *gridLayout_2;
-    QSpacerItem *verticalSpacer;
-    QSpacerItem *horizontalSpacer;
     QMenuBar *menubar;
     QMenu *menu_File;
     QMenu *menuObjects;
     QStatusBar *statusbar;
     QDockWidget *properties;
     QWidget *propertiesContents;
-    QWidget *gridLayoutWidget;
-    QGridLayout *propertiesLayout;
+    QGridLayout *gridLayout_3;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -60,15 +56,9 @@ public:
         scene = new GLWidget(centralwidget);
         scene->setObjectName(QString::fromUtf8("scene"));
         gridLayout_2 = new QGridLayout(scene);
+        gridLayout_2->setSpacing(0);
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        verticalSpacer = new QSpacerItem(20, 410, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_2->addItem(verticalSpacer, 0, 2, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(531, 410, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_2->addItem(horizontalSpacer, 0, 1, 1, 1);
-
 
         gridLayout->addWidget(scene, 0, 0, 1, 1);
 
@@ -86,21 +76,22 @@ public:
         MainWindow->setStatusBar(statusbar);
         properties = new QDockWidget(MainWindow);
         properties->setObjectName(QString::fromUtf8("properties"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(173);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(properties->sizePolicy().hasHeightForWidth());
+        properties->setSizePolicy(sizePolicy);
         properties->setAutoFillBackground(false);
         properties->setFloating(false);
         properties->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         properties->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
         propertiesContents = new QWidget();
         propertiesContents->setObjectName(QString::fromUtf8("propertiesContents"));
-        gridLayoutWidget = new QWidget(propertiesContents);
-        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(9, -1, 181, 571));
-        propertiesLayout = new QGridLayout(gridLayoutWidget);
-        propertiesLayout->setContentsMargins(2, 2, 2, 2);
-        propertiesLayout->setObjectName(QString::fromUtf8("propertiesLayout"));
-        propertiesLayout->setContentsMargins(0, 0, 0, 0);
+        gridLayout_3 = new QGridLayout(propertiesContents);
+        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
         properties->setWidget(propertiesContents);
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), properties);
+        properties->raise();
 
         menubar->addAction(menu_File->menuAction());
         menubar->addAction(menuObjects->menuAction());

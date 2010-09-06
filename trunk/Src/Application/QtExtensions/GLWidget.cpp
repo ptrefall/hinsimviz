@@ -23,7 +23,7 @@ GLWidget::~GLWidget()
 void GLWidget::init(Engine::Core::CoreManager *coreMgr)
 {
 	this->coreMgr = coreMgr;
-	timerId = startTimer(0);
+	timerId = startTimer(10);
 }
 
 void GLWidget::center(int &x, int &y)
