@@ -14,7 +14,6 @@
   <Components>
     <Component>Move</Component>
     <Component>Look</Component>
-    <Component>CameraStateChanger</Component>
   </Components>
 	<Properties>
 	</Properties>

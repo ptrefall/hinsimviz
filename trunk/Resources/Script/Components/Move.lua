@@ -7,6 +7,11 @@ function Move:OnInit(go)
 	Log("Move:OnInit", "init Move for " .. go.name, LOG_INFO)
 	go:AddProperty("Velocity", 1.0)
 	go:AddProperty("MoveDirection", {x=0.0, y=0.0, z=0.0})
+	go:AddProperty("Test1", 3)
+	go:AddProperty("Test2", "Testing")
+	go:AddProperty("Test3", true)
+	go:AddProperty("Test4", false)
+	go:AddProperty("Test5", "Testing again and again")
 end
 
 function Move:OnCommand(go, command)
