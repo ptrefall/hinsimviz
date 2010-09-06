@@ -3,6 +3,10 @@
 #include <ClanLib/core.h>
 #include <Engine/Scene/Object.h>
 #include <Depends/Entity/IProperty.h>
+#include <Depends/Entity/Property.h>
+#include <QtGui/QSpinBox>
+#include <QtGui/QDoubleSpinBox>
+#include <QtGui/QLineEdit>
 
 ObjectQtWrapper::ObjectQtWrapper(Engine::Scene::Object *obj, MainWindow *wnd)
 : QObject()
@@ -72,7 +76,67 @@ void ObjectQtWrapper::slotObjectClicked()
 			Engine::Entity::IProperty *property = it->second;
 			QHBoxLayout *hLayout = new QHBoxLayout();
 			hLayout->addWidget(new QLabel(property->GetName().c_str()));
-			hLayout->addWidget(new QLabel(property->ToString().c_str()));
+
+			if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_BOOL)
+			{
+				Engine::Entity::Property<bool> *prop = static_cast<Engine::Entity::Property<bool>*>(property);
+				QCheckBox* checkbox = new QCheckBox();
+				if(prop->Get() == true)
+					checkbox->setCheckState(Qt::CheckState::Checked);
+				else
+					checkbox->setCheckState(Qt::CheckState::Unchecked);
+				hLayout->addWidget(checkbox);
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_DOUBLE)
+			{
+				Engine::Entity::Property<double> *prop = static_cast<Engine::Entity::Property<double>*>(property);
+				QDoubleSpinBox* spinbox = new QDoubleSpinBox();
+				spinbox->setValue(prop->Get());
+				hLayout->addWidget(spinbox);
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_FLOAT)
+			{
+				Engine::Entity::Property<float> *prop = static_cast<Engine::Entity::Property<float>*>(property);
+				QDoubleSpinBox* spinbox = new QDoubleSpinBox();
+				spinbox->setValue((double)prop->Get());
+				hLayout->addWidget(spinbox);
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_INT)
+			{
+				Engine::Entity::Property<int> *prop = static_cast<Engine::Entity::Property<int>*>(property);
+				QSpinBox* spinbox = new QSpinBox();
+				spinbox->setValue(prop->Get());
+				hLayout->addWidget(spinbox);
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_MAT3)
+			{
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_MAT4)
+			{
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_STRING)
+			{
+				Engine::Entity::Property<CL_String> *prop = static_cast<Engine::Entity::Property<CL_String>*>(property);
+				QLineEdit* lineedit = new QLineEdit();
+				lineedit->setText(prop->Get().c_str());
+				hLayout->addWidget(lineedit);
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_UNSIGNED_INT)
+			{
+				Engine::Entity::Property<unsigned int> *prop = static_cast<Engine::Entity::Property<unsigned int>*>(property);
+				QSpinBox* spinbox = new QSpinBox();
+				spinbox->setValue((int)prop->Get());
+				hLayout->addWidget(spinbox);
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC2)
+			{
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC3)
+			{
+			}
+			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC4)
+			{
+			}
 			gLayout->addLayout(hLayout);
 			++it;
 		}
