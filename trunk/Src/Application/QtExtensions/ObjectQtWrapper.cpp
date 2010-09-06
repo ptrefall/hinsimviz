@@ -2,6 +2,7 @@
 #include "MainWindow.h"
 #include <ClanLib/core.h>
 #include <Engine/Scene/Object.h>
+#include <Depends/Entity/IProperty.h>
 
 ObjectQtWrapper::ObjectQtWrapper(Engine::Scene::Object *obj, MainWindow *wnd)
 : QObject()
@@ -50,7 +51,32 @@ void ObjectQtWrapper::slotObjectClicked()
     wnd->propertiesLayout->setObjectName(QString::fromUtf8("propertiesLayout"));
 	wnd->gridLayout_3->addLayout(wnd->propertiesLayout, 0, 0, 1, 1);
 
-	QLabel *text = new QLabel(cl_format("Name: %1", obj->getName()).c_str());
-	text->setObjectName("TextLabel");
-	wnd->propertiesLayout->addWidget(text, 1, 1, 1, 1);
+	QVBoxLayout *vLayout = new QVBoxLayout();
+	
+	{
+		QHBoxLayout *hLayout = new QHBoxLayout();
+		hLayout->addWidget(new QLabel("Name:"));
+		hLayout->addWidget(new QLabel(obj->getName().c_str()));
+		vLayout->addLayout(hLayout);
+	}
+	{
+		QGroupBox *group = new QGroupBox();
+		QVBoxLayout *gLayout = new QVBoxLayout();
+		group->setLayout(gLayout);
+		group->setTitle("Properties");
+
+		std::map<CL_String, Engine::Entity::IProperty*> &properties = obj->GetProperties();
+		std::map<CL_String, Engine::Entity::IProperty*>::iterator it = properties.begin();
+		while(it != properties.end())
+		{
+			Engine::Entity::IProperty *property = it->second;
+			QHBoxLayout *hLayout = new QHBoxLayout();
+			hLayout->addWidget(new QLabel(property->GetName().c_str()));
+			hLayout->addWidget(new QLabel(property->ToString().c_str()));
+			gLayout->addLayout(hLayout);
+			++it;
+		}
+		vLayout->addWidget(group);
+	}
+	wnd->propertiesLayout->addLayout(vLayout, 1, 1);
 }
