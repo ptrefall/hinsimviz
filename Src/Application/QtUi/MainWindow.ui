@@ -18,35 +18,12 @@
     <item row="0" column="0">
      <widget class="GLWidget" name="scene" native="true">
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="2">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>410</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="1">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Expanding</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>531</width>
-           <height>410</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
       </layout>
      </widget>
     </item>
@@ -77,6 +54,12 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="properties">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>173</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
@@ -96,21 +79,7 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="propertiesContents">
-    <widget class="QWidget" name="gridLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>-1</y>
-       <width>181</width>
-       <height>571</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="propertiesLayout">
-      <property name="margin">
-       <number>2</number>
-      </property>
-     </layout>
-    </widget>
+    <layout class="QGridLayout" name="gridLayout_3"/>
    </widget>
   </widget>
   <action name="action_close">
@@ -121,6 +90,7 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
+  <zorder>properties</zorder>
  </widget>
  <customwidgets>
   <customwidget>

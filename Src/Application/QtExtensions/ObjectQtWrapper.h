@@ -4,6 +4,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QAction>
 #include <QtGui/QLabel>
+#include <QtGui/QGridLayout>
 
 namespace Engine { namespace Scene { class Object; }}
 class MainWindow;
@@ -21,7 +22,6 @@ private:
 	Engine::Scene::Object *obj;
 	QAction *action;
 	MainWindow *wnd;
-	QLabel *text;
 
 public slots:
 	void slotObjectClicked();
