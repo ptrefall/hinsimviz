@@ -45,7 +45,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;GLEW_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
@@ -119,7 +119,7 @@
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="../Src/;../Src/Application/;C:/Qt/4.6.3/include/;C:/Qt/4.6.3/include/Qt/;C:/Qt/4.6.3/include/QtCore/;C:/Qt/4.6.3/include/QtGui/;C:/Qt/4.6.3/include/QtOpenGL;../Depends/include/;../Depends/include/GL;../Src/Depends/ClanLib/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;GLEW_STATIC"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -184,10 +184,6 @@
 				Name="QtExtensions"
 				>
 				<File
-					RelativePath="..\Src\Application\QtExtensions\GLWidget.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\Src\Application\QtExtensions\GLWidget.h"
 					>
 					<FileConfiguration
@@ -210,6 +206,32 @@
 							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\Application\QtExtensions\GLWidget.h -o ..\Src\Application\QtTemp\moc\moc_GLWidget.cpp&#x0D;&#x0A;"
 							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
 							Outputs="..\Src\Application\QtTemp\moc\moc_GLWidget.cpp"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\IWrapper.h"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Qt Meta Object Compiling QtExtensions\IWrapper.h..."
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\Application\QtExtensions\IWrapper.h -o ..\Src\Application\QtTemp\moc\moc_IWrapper.cpp&#x0D;&#x0A;"
+							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
+							Outputs="..\Src\Application\QtTemp\moc\moc_IWrapper.cpp"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Qt Meta Object Compiling QtExtensions\IWrapper.h..."
+							CommandLine="C:\Qt\4.6.3\bin\moc.exe ..\Src\Application\QtExtensions\IWrapper.h -o ..\Src\Application\QtTemp\moc\moc_IWrapper.cpp&#x0D;&#x0A;"
+							AdditionalDependencies="C:\Qt\4.6.3\bin\moc.exe"
+							Outputs="..\Src\Application\QtTemp\moc\moc_IWrapper.cpp"
 						/>
 					</FileConfiguration>
 				</File>
@@ -273,6 +295,46 @@
 						/>
 					</FileConfiguration>
 				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QCheckBoxWrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QCheckBoxWrapper.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QDoubleSpinBoxWrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QDoubleSpinBoxWrapper.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QLineEditWrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QLineEditWrapper.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QSpinBoxWrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QSpinBoxWrapper.h"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QVectorWrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QVectorWrapper.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="QtTemp"
@@ -282,6 +344,10 @@
 					>
 					<File
 						RelativePath="..\Src\Application\QtTemp\moc\moc_GLWidget.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\Src\Application\QtTemp\moc\moc_IWrapper.cpp"
 						>
 					</File>
 					<File
@@ -345,6 +411,10 @@
 				</File>
 				<File
 					RelativePath="..\Resources\XML\game_config.xml"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\GLWidget.cpp"
 					>
 				</File>
 				<File
