@@ -8,6 +8,10 @@
 #include <QtGui/QDoubleSpinBox>
 #include <QtGui/QLineEdit>
 #include <QtGui/QSpacerItem>
+#include "QCheckBoxWrapper.h"
+#include "QDoubleSpinBoxWrapper.h"
+#include "QSpinBoxWrapper.h"
+#include "QVectorWrapper.h"
 
 ObjectQtWrapper::ObjectQtWrapper(Engine::Scene::Object *obj, MainWindow *wnd)
 : QObject()
@@ -85,33 +89,26 @@ void ObjectQtWrapper::slotObjectClicked()
 			if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_BOOL)
 			{
 				Engine::Entity::Property<bool> *prop = static_cast<Engine::Entity::Property<bool>*>(property);
-				QCheckBox* checkbox = new QCheckBox();
-				if(prop->Get() == true)
-					checkbox->setCheckState(Qt::Checked);
-				else
-					checkbox->setCheckState(Qt::Unchecked);
-				hLayout->addWidget(checkbox);
+				QCheckBoxWrapper *checkbox = new QCheckBoxWrapper(*prop);
+				hLayout->addWidget(checkbox->getQCheckBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_DOUBLE)
 			{
 				Engine::Entity::Property<double> *prop = static_cast<Engine::Entity::Property<double>*>(property);
-				QDoubleSpinBox* spinbox = new QDoubleSpinBox();
-				spinbox->setValue(prop->Get());
-				hLayout->addWidget(spinbox);
+				QDoubleSpinBoxWrapper *spinbox = new QDoubleSpinBoxWrapper(*prop);
+				hLayout->addWidget(spinbox->getQDoubleSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_FLOAT)
 			{
 				Engine::Entity::Property<float> *prop = static_cast<Engine::Entity::Property<float>*>(property);
-				QDoubleSpinBox* spinbox = new QDoubleSpinBox();
-				spinbox->setValue((double)prop->Get());
-				hLayout->addWidget(spinbox);
+				QDoubleSpinBoxWrapper *spinbox = new QDoubleSpinBoxWrapper(*prop);
+				hLayout->addWidget(spinbox->getQDoubleSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_INT)
 			{
 				Engine::Entity::Property<int> *prop = static_cast<Engine::Entity::Property<int>*>(property);
-				QSpinBox* spinbox = new QSpinBox();
-				spinbox->setValue(prop->Get());
-				hLayout->addWidget(spinbox);
+				QSpinBoxWrapper* spinbox = new QSpinBoxWrapper(*prop);
+				hLayout->addWidget(spinbox->getQSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_MAT3)
 			{
@@ -245,48 +242,32 @@ void ObjectQtWrapper::slotObjectClicked()
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_UNSIGNED_INT)
 			{
 				Engine::Entity::Property<unsigned int> *prop = static_cast<Engine::Entity::Property<unsigned int>*>(property);
-				QSpinBox* spinbox = new QSpinBox();
-				spinbox->setValue((int)prop->Get());
-				hLayout->addWidget(spinbox);
+				QSpinBoxWrapper* spinbox = new QSpinBoxWrapper(*prop);
+				hLayout->addWidget(spinbox->getQSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC2)
 			{
 				Engine::Entity::Property<CL_Vec2f> *prop = static_cast<Engine::Entity::Property<CL_Vec2f>*>(property);
-				QDoubleSpinBox* spinboxX = new QDoubleSpinBox();
-				spinboxX->setValue((double)prop->Get().x);
-				hLayout->addWidget(spinboxX);
-				QDoubleSpinBox* spinboxY = new QDoubleSpinBox();
-				spinboxY->setValue((double)prop->Get().y);
-				hLayout->addWidget(spinboxY);
+				QVectorWrapper *qVec = new QVectorWrapper(*prop);
+				hLayout->addWidget(qVec->getQDoubleSpinBox(0));
+				hLayout->addWidget(qVec->getQDoubleSpinBox(1));
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC3)
 			{
 				Engine::Entity::Property<CL_Vec3f> *prop = static_cast<Engine::Entity::Property<CL_Vec3f>*>(property);
-				QDoubleSpinBox* spinboxX = new QDoubleSpinBox();
-				spinboxX->setValue((double)prop->Get().x);
-				hLayout->addWidget(spinboxX);
-				QDoubleSpinBox* spinboxY = new QDoubleSpinBox();
-				spinboxY->setValue((double)prop->Get().y);
-				hLayout->addWidget(spinboxY);
-				QDoubleSpinBox* spinboxZ = new QDoubleSpinBox();
-				spinboxZ->setValue((double)prop->Get().z);
-				hLayout->addWidget(spinboxZ);
+				QVectorWrapper *qVec = new QVectorWrapper(*prop);
+				hLayout->addWidget(qVec->getQDoubleSpinBox(0));
+				hLayout->addWidget(qVec->getQDoubleSpinBox(1));
+				hLayout->addWidget(qVec->getQDoubleSpinBox(2));
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC4)
 			{
 				Engine::Entity::Property<CL_Vec4f> *prop = static_cast<Engine::Entity::Property<CL_Vec4f>*>(property);
-				QDoubleSpinBox* spinboxX = new QDoubleSpinBox();
-				spinboxX->setValue((double)prop->Get().x);
-				hLayout->addWidget(spinboxX);
-				QDoubleSpinBox* spinboxY = new QDoubleSpinBox();
-				spinboxY->setValue((double)prop->Get().y);
-				hLayout->addWidget(spinboxY);
-				QDoubleSpinBox* spinboxZ = new QDoubleSpinBox();
-				spinboxZ->setValue((double)prop->Get().z);
-				hLayout->addWidget(spinboxZ);
-				QDoubleSpinBox* spinboxW = new QDoubleSpinBox();
-				spinboxW->setValue((double)prop->Get().w);
-				hLayout->addWidget(spinboxW);
+				QVectorWrapper *qVec = new QVectorWrapper(*prop);
+				hLayout->addWidget(qVec->getQDoubleSpinBox(0));
+				hLayout->addWidget(qVec->getQDoubleSpinBox(1));
+				hLayout->addWidget(qVec->getQDoubleSpinBox(2));
+				hLayout->addWidget(qVec->getQDoubleSpinBox(3));
 			}
 			gLayout->addLayout(hLayout);
 			++it;
