@@ -1,8 +1,10 @@
 #include "QCheckBoxWrapper.h"
+#include "ObjectQtWrapper.h"
 
-QCheckBoxWrapper::QCheckBoxWrapper(Engine::Entity::Property<bool> property)
+QCheckBoxWrapper::QCheckBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<bool> property)
 : slotChanged(false), propChanged(false)
 {
+	this->qObj = qObj;
 	this->property = property;
 
 	checkbox = new QCheckBox();
@@ -22,6 +24,9 @@ QCheckBoxWrapper::~QCheckBoxWrapper()
 
 void QCheckBoxWrapper::OnPropertyChanged(const bool &oldValue, const bool &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(newValue == true && !slotChanged)
 	{
 		propChanged = true;

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'IWrapper.h'
 **
-** Created: Fri 24. Sep 12:57:09 2010
+** Created: Sat 25. Sep 02:36:10 2010
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_IWrapper[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      22,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -41,6 +41,18 @@ static const uint qt_meta_data_IWrapper[] = {
      198,   38,    9,    9, 0x0a,
      224,   38,    9,    9, 0x0a,
      250,   38,    9,    9, 0x0a,
+     276,   38,    9,    9, 0x0a,
+     302,   38,    9,    9, 0x0a,
+     328,   38,    9,    9, 0x0a,
+     354,   38,    9,    9, 0x0a,
+     380,   38,    9,    9, 0x0a,
+     406,   38,    9,    9, 0x0a,
+     433,   38,    9,    9, 0x0a,
+     460,   38,    9,    9, 0x0a,
+     487,   38,    9,    9, 0x0a,
+     514,   38,    9,    9, 0x0a,
+     541,   38,    9,    9, 0x0a,
+     568,   38,    9,    9, 0x0a,
 
        0        // eod
 };
@@ -55,6 +67,18 @@ static const char qt_meta_stringdata_IWrapper[] = {
     "slot2ValueChanged(double)\0"
     "slot3ValueChanged(double)\0"
     "slot4ValueChanged(double)\0"
+    "slot5ValueChanged(double)\0"
+    "slot6ValueChanged(double)\0"
+    "slot7ValueChanged(double)\0"
+    "slot8ValueChanged(double)\0"
+    "slot9ValueChanged(double)\0"
+    "slot10ValueChanged(double)\0"
+    "slot11ValueChanged(double)\0"
+    "slot12ValueChanged(double)\0"
+    "slot13ValueChanged(double)\0"
+    "slot14ValueChanged(double)\0"
+    "slot15ValueChanged(double)\0"
+    "slot16ValueChanged(double)\0"
 };
 
 const QMetaObject IWrapper::staticMetaObject = {
@@ -96,9 +120,21 @@ int IWrapper::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 7: slot2ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 8: slot3ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 9: slot4ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: slot5ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 11: slot6ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 12: slot7ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 13: slot8ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 14: slot9ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 15: slot10ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 16: slot11ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 17: slot12ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 18: slot13ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 19: slot14ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 20: slot15ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 21: slot16ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 10;
+        _id -= 22;
     }
     return _id;
 }

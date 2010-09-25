@@ -5,12 +5,14 @@
 #include <QtGui/QDoubleSpinBox>
 #include <Depends/Entity/Property.h>
 
+class ObjectQtWrapper;
+
 class QVectorWrapper : public IWrapper
 {
 public:
-	QVectorWrapper(Engine::Entity::Property<CL_Vec2f> property);
-	QVectorWrapper(Engine::Entity::Property<CL_Vec3f> property);
-	QVectorWrapper(Engine::Entity::Property<CL_Vec4f> property);
+	QVectorWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_Vec2f> property);
+	QVectorWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_Vec3f> property);
+	QVectorWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_Vec4f> property);
 	virtual ~QVectorWrapper();
 
 	QDoubleSpinBox *getQDoubleSpinBox(int i) const 
@@ -39,6 +41,8 @@ private:
 	Engine::Entity::Property<CL_Vec2f> vec2Prop;
 	Engine::Entity::Property<CL_Vec3f> vec3Prop;
 	Engine::Entity::Property<CL_Vec4f> vec4Prop;
+
+	ObjectQtWrapper *qObj;
 
 	bool slotChanged;
 	bool propChanged;

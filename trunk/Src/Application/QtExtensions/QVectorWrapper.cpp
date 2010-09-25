@@ -1,8 +1,10 @@
 #include "QVectorWrapper.h"
+#include "ObjectQtWrapper.h"
 
-QVectorWrapper::QVectorWrapper(Engine::Entity::Property<CL_Vec2f> property)
+QVectorWrapper::QVectorWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_Vec2f> property)
 : slotChanged(false), propChanged(false), vecType(2)
 {
+	this->qObj = qObj;
 	vec2Prop = property;
 
 	spinbox1 = new QDoubleSpinBox();
@@ -16,9 +18,10 @@ QVectorWrapper::QVectorWrapper(Engine::Entity::Property<CL_Vec2f> property)
 	connect(spinbox2, SIGNAL( valueChanged(double) ), this, SLOT( slot2ValueChanged(double) ));
 }
 
-QVectorWrapper::QVectorWrapper(Engine::Entity::Property<CL_Vec3f> property)
+QVectorWrapper::QVectorWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_Vec3f> property)
 : slotChanged(false), propChanged(false), vecType(3)
 {
+	this->qObj = qObj;
 	vec3Prop = property;
 
 	spinbox1 = new QDoubleSpinBox();
@@ -35,9 +38,10 @@ QVectorWrapper::QVectorWrapper(Engine::Entity::Property<CL_Vec3f> property)
 	connect(spinbox3, SIGNAL( valueChanged(double) ), this, SLOT( slot3ValueChanged(double) ));
 }
 
-QVectorWrapper::QVectorWrapper(Engine::Entity::Property<CL_Vec4f> property)
+QVectorWrapper::QVectorWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_Vec4f> property)
 : slotChanged(false), propChanged(false), vecType(4)
 {
+	this->qObj = qObj;
 	vec4Prop = property;
 
 	spinbox1 = new QDoubleSpinBox();
@@ -63,6 +67,9 @@ QVectorWrapper::~QVectorWrapper()
 
 void QVectorWrapper::On2PropertyChanged(const CL_Vec2f &oldValue, const CL_Vec2f &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;
@@ -77,6 +84,9 @@ void QVectorWrapper::On2PropertyChanged(const CL_Vec2f &oldValue, const CL_Vec2f
 
 void QVectorWrapper::On3PropertyChanged(const CL_Vec3f &oldValue, const CL_Vec3f &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;
@@ -92,6 +102,9 @@ void QVectorWrapper::On3PropertyChanged(const CL_Vec3f &oldValue, const CL_Vec3f
 
 void QVectorWrapper::On4PropertyChanged(const CL_Vec4f &oldValue, const CL_Vec4f &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;

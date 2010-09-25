@@ -5,10 +5,12 @@
 #include <QtGui/QLineEdit>
 #include <Depends/Entity/Property.h>
 
+class ObjectQtWrapper;
+
 class QLineEditWrapper : public IWrapper
 {
 public:
-	QLineEditWrapper(Engine::Entity::Property<CL_String> property);
+	QLineEditWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_String> property);
 	virtual ~QLineEditWrapper();
 
 	QLineEdit *getQLineEdit() const { return lineedit; }
@@ -19,6 +21,8 @@ private:
 	CL_Slot slotPropertyChanged;
 	QLineEdit *lineedit;
 	Engine::Entity::Property<CL_String> property;
+
+	ObjectQtWrapper *qObj;
 
 	bool slotChanged;
 	bool propChanged;
