@@ -1,8 +1,10 @@
 #include "QLineEditWrapper.h"
+#include "ObjectQtWrapper.h"
 
-QLineEditWrapper::QLineEditWrapper(Engine::Entity::Property<CL_String> property)
+QLineEditWrapper::QLineEditWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<CL_String> property)
 : slotChanged(false), propChanged(false)
 {
+	this->qObj = qObj;
 	this->property = property;
 
 	lineedit = new QLineEdit();
@@ -18,6 +20,9 @@ QLineEditWrapper::~QLineEditWrapper()
 
 void QLineEditWrapper::OnPropertyChanged(const CL_String &oldValue, const CL_String &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;

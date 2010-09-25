@@ -5,11 +5,13 @@
 #include <QtGui/QDoubleSpinBox>
 #include <Depends/Entity/Property.h>
 
+class ObjectQtWrapper;
+
 class QDoubleSpinBoxWrapper : public IWrapper
 {
 public:
-	QDoubleSpinBoxWrapper(Engine::Entity::Property<double> property);
-	QDoubleSpinBoxWrapper(Engine::Entity::Property<float> property);
+	QDoubleSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<double> property);
+	QDoubleSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<float> property);
 	virtual ~QDoubleSpinBoxWrapper();
 
 	QDoubleSpinBox *getQDoubleSpinBox() const { return spinbox; }
@@ -24,6 +26,8 @@ private:
 	QDoubleSpinBox *spinbox;
 	Engine::Entity::Property<double> dProperty;
 	Engine::Entity::Property<float> fProperty;
+
+	ObjectQtWrapper *qObj;
 
 	bool slotChanged;
 	bool propChanged;

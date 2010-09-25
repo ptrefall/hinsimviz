@@ -12,9 +12,11 @@
 #include "QDoubleSpinBoxWrapper.h"
 #include "QSpinBoxWrapper.h"
 #include "QVectorWrapper.h"
+#include "QMatrixWrapper.h"
+#include "QLineEditWrapper.h"
 
 ObjectQtWrapper::ObjectQtWrapper(Engine::Scene::Object *obj, MainWindow *wnd)
-: QObject()
+: QObject(), selected(false)
 {
 	this->obj = obj;
 	this->wnd = wnd;
@@ -25,11 +27,19 @@ ObjectQtWrapper::ObjectQtWrapper(Engine::Scene::Object *obj, MainWindow *wnd)
 }
 ObjectQtWrapper::~ObjectQtWrapper()
 {
+	for(unsigned int i = 0; i < wrappers.size(); i++)
+	{
+		delete wrappers[i];
+		wrappers[i] = NULL;
+	}
 }
 
 void ObjectQtWrapper::slotObjectClicked()
 {
 	std::cout << "Object " << obj->getName().c_str() << " clicked!" << std::endl;
+
+	wnd->setSelectedObj(this);
+
 	if(wnd->propertiesLayout)
 	{
 		
@@ -46,6 +56,13 @@ void ObjectQtWrapper::slotObjectClicked()
 		delete wnd->propertiesContents;
 		wnd->propertiesContents = NULL;
 	}
+
+	for(unsigned int i = 0; i < wrappers.size(); i++)
+	{
+		delete wrappers[i];
+		wrappers[i] = NULL;
+	}
+	wrappers.clear();
 
 	wnd->propertiesContents = new QWidget();
     wnd->propertiesContents->setObjectName(QString::fromUtf8("propertiesContents"));
@@ -89,68 +106,56 @@ void ObjectQtWrapper::slotObjectClicked()
 			if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_BOOL)
 			{
 				Engine::Entity::Property<bool> *prop = static_cast<Engine::Entity::Property<bool>*>(property);
-				QCheckBoxWrapper *checkbox = new QCheckBoxWrapper(*prop);
+				QCheckBoxWrapper *checkbox = new QCheckBoxWrapper(this, *prop);
+				wrappers.push_back(checkbox);
 				hLayout->addWidget(checkbox->getQCheckBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_DOUBLE)
 			{
 				Engine::Entity::Property<double> *prop = static_cast<Engine::Entity::Property<double>*>(property);
-				QDoubleSpinBoxWrapper *spinbox = new QDoubleSpinBoxWrapper(*prop);
+				QDoubleSpinBoxWrapper *spinbox = new QDoubleSpinBoxWrapper(this, *prop);
+				wrappers.push_back(spinbox);
 				hLayout->addWidget(spinbox->getQDoubleSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_FLOAT)
 			{
 				Engine::Entity::Property<float> *prop = static_cast<Engine::Entity::Property<float>*>(property);
-				QDoubleSpinBoxWrapper *spinbox = new QDoubleSpinBoxWrapper(*prop);
+				QDoubleSpinBoxWrapper *spinbox = new QDoubleSpinBoxWrapper(this, *prop);
+				wrappers.push_back(spinbox);
 				hLayout->addWidget(spinbox->getQDoubleSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_INT)
 			{
 				Engine::Entity::Property<int> *prop = static_cast<Engine::Entity::Property<int>*>(property);
-				QSpinBoxWrapper* spinbox = new QSpinBoxWrapper(*prop);
+				QSpinBoxWrapper* spinbox = new QSpinBoxWrapper(this, *prop);
+				wrappers.push_back(spinbox);
 				hLayout->addWidget(spinbox->getQSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_MAT3)
 			{
 				Engine::Entity::Property<CL_Mat3f> *prop = static_cast<Engine::Entity::Property<CL_Mat3f>*>(property);
-				
+				QMatrixWrapper *qMat = new QMatrixWrapper(this, *prop);
+				wrappers.push_back(qMat);
+
 				QVBoxLayout *vLayoutMat = new QVBoxLayout();
 				{
 					QHBoxLayout *hLayoutMat1 = new QHBoxLayout();
 					{
-						QDoubleSpinBox* spinbox0 = new QDoubleSpinBox();
-						spinbox0->setValue((double)prop->Get()[0]);
-						hLayoutMat1->addWidget(spinbox0);
-						QDoubleSpinBox* spinbox1 = new QDoubleSpinBox();
-						spinbox1->setValue((double)prop->Get()[1]);
-						hLayoutMat1->addWidget(spinbox1);
-						QDoubleSpinBox* spinbox2 = new QDoubleSpinBox();
-						spinbox2->setValue((double)prop->Get()[2]);
-						hLayoutMat1->addWidget(spinbox2);
+						hLayoutMat1->addWidget(qMat->getQDoubleSpinBox(0));
+						hLayoutMat1->addWidget(qMat->getQDoubleSpinBox(1));
+						hLayoutMat1->addWidget(qMat->getQDoubleSpinBox(2));
 					}
 					QHBoxLayout *hLayoutMat2 = new QHBoxLayout();
 					{
-						QDoubleSpinBox* spinbox0 = new QDoubleSpinBox();
-						spinbox0->setValue((double)prop->Get()[3]);
-						hLayoutMat2->addWidget(spinbox0);
-						QDoubleSpinBox* spinbox1 = new QDoubleSpinBox();
-						spinbox1->setValue((double)prop->Get()[4]);
-						hLayoutMat2->addWidget(spinbox1);
-						QDoubleSpinBox* spinbox2 = new QDoubleSpinBox();
-						spinbox2->setValue((double)prop->Get()[5]);
-						hLayoutMat2->addWidget(spinbox2);
+						hLayoutMat2->addWidget(qMat->getQDoubleSpinBox(3));
+						hLayoutMat2->addWidget(qMat->getQDoubleSpinBox(4));
+						hLayoutMat2->addWidget(qMat->getQDoubleSpinBox(5));
 					}
 					QHBoxLayout *hLayoutMat3 = new QHBoxLayout();
 					{
-						QDoubleSpinBox* spinbox0 = new QDoubleSpinBox();
-						spinbox0->setValue((double)prop->Get()[6]);
-						hLayoutMat3->addWidget(spinbox0);
-						QDoubleSpinBox* spinbox1 = new QDoubleSpinBox();
-						spinbox1->setValue((double)prop->Get()[7]);
-						hLayoutMat3->addWidget(spinbox1);
-						QDoubleSpinBox* spinbox2 = new QDoubleSpinBox();
-						spinbox2->setValue((double)prop->Get()[8]);
-						hLayoutMat3->addWidget(spinbox2);
+						hLayoutMat3->addWidget(qMat->getQDoubleSpinBox(6));
+						hLayoutMat3->addWidget(qMat->getQDoubleSpinBox(7));
+						hLayoutMat3->addWidget(qMat->getQDoubleSpinBox(8));
 					}
 					vLayoutMat->addLayout(hLayoutMat1);
 					vLayoutMat->addLayout(hLayoutMat2);
@@ -161,68 +166,38 @@ void ObjectQtWrapper::slotObjectClicked()
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_MAT4)
 			{
 				Engine::Entity::Property<CL_Mat4f> *prop = static_cast<Engine::Entity::Property<CL_Mat4f>*>(property);
-				
+				QMatrixWrapper *qMat = new QMatrixWrapper(this, *prop);
+				wrappers.push_back(qMat);
+
 				QVBoxLayout *vLayoutMat = new QVBoxLayout();
 				{
 					QHBoxLayout *hLayoutMat1 = new QHBoxLayout();
 					{
-						QDoubleSpinBox* spinbox0 = new QDoubleSpinBox();
-						spinbox0->setValue((double)prop->Get()[0]);
-						hLayoutMat1->addWidget(spinbox0);
-						QDoubleSpinBox* spinbox1 = new QDoubleSpinBox();
-						spinbox1->setValue((double)prop->Get()[1]);
-						hLayoutMat1->addWidget(spinbox1);
-						QDoubleSpinBox* spinbox2 = new QDoubleSpinBox();
-						spinbox2->setValue((double)prop->Get()[2]);
-						hLayoutMat1->addWidget(spinbox2);
-						QDoubleSpinBox* spinbox3 = new QDoubleSpinBox();
-						spinbox3->setValue((double)prop->Get()[3]);
-						hLayoutMat1->addWidget(spinbox3);
+						hLayoutMat1->addWidget(qMat->getQDoubleSpinBox(0));
+						hLayoutMat1->addWidget(qMat->getQDoubleSpinBox(1));
+						hLayoutMat1->addWidget(qMat->getQDoubleSpinBox(2));
+						hLayoutMat1->addWidget(qMat->getQDoubleSpinBox(3));
 					}
 					QHBoxLayout *hLayoutMat2 = new QHBoxLayout();
 					{
-						QDoubleSpinBox* spinbox0 = new QDoubleSpinBox();
-						spinbox0->setValue((double)prop->Get()[4]);
-						hLayoutMat2->addWidget(spinbox0);
-						QDoubleSpinBox* spinbox1 = new QDoubleSpinBox();
-						spinbox1->setValue((double)prop->Get()[5]);
-						hLayoutMat2->addWidget(spinbox1);
-						QDoubleSpinBox* spinbox2 = new QDoubleSpinBox();
-						spinbox2->setValue((double)prop->Get()[6]);
-						hLayoutMat2->addWidget(spinbox2);
-						QDoubleSpinBox* spinbox3 = new QDoubleSpinBox();
-						spinbox3->setValue((double)prop->Get()[7]);
-						hLayoutMat2->addWidget(spinbox3);
+						hLayoutMat2->addWidget(qMat->getQDoubleSpinBox(4));
+						hLayoutMat2->addWidget(qMat->getQDoubleSpinBox(5));
+						hLayoutMat2->addWidget(qMat->getQDoubleSpinBox(6));
+						hLayoutMat2->addWidget(qMat->getQDoubleSpinBox(7));
 					}
 					QHBoxLayout *hLayoutMat3 = new QHBoxLayout();
 					{
-						QDoubleSpinBox* spinbox0 = new QDoubleSpinBox();
-						spinbox0->setValue((double)prop->Get()[8]);
-						hLayoutMat3->addWidget(spinbox0);
-						QDoubleSpinBox* spinbox1 = new QDoubleSpinBox();
-						spinbox1->setValue((double)prop->Get()[9]);
-						hLayoutMat3->addWidget(spinbox1);
-						QDoubleSpinBox* spinbox2 = new QDoubleSpinBox();
-						spinbox2->setValue((double)prop->Get()[10]);
-						hLayoutMat3->addWidget(spinbox2);
-						QDoubleSpinBox* spinbox3 = new QDoubleSpinBox();
-						spinbox3->setValue((double)prop->Get()[11]);
-						hLayoutMat3->addWidget(spinbox3);
+						hLayoutMat3->addWidget(qMat->getQDoubleSpinBox(8));
+						hLayoutMat3->addWidget(qMat->getQDoubleSpinBox(9));
+						hLayoutMat3->addWidget(qMat->getQDoubleSpinBox(10));
+						hLayoutMat3->addWidget(qMat->getQDoubleSpinBox(11));
 					}
 					QHBoxLayout *hLayoutMat4 = new QHBoxLayout();
 					{
-						QDoubleSpinBox* spinbox0 = new QDoubleSpinBox();
-						spinbox0->setValue((double)prop->Get()[12]);
-						hLayoutMat4->addWidget(spinbox0);
-						QDoubleSpinBox* spinbox1 = new QDoubleSpinBox();
-						spinbox1->setValue((double)prop->Get()[13]);
-						hLayoutMat4->addWidget(spinbox1);
-						QDoubleSpinBox* spinbox2 = new QDoubleSpinBox();
-						spinbox2->setValue((double)prop->Get()[14]);
-						hLayoutMat4->addWidget(spinbox2);
-						QDoubleSpinBox* spinbox3 = new QDoubleSpinBox();
-						spinbox3->setValue((double)prop->Get()[15]);
-						hLayoutMat4->addWidget(spinbox3);
+						hLayoutMat4->addWidget(qMat->getQDoubleSpinBox(12));
+						hLayoutMat4->addWidget(qMat->getQDoubleSpinBox(13));
+						hLayoutMat4->addWidget(qMat->getQDoubleSpinBox(14));
+						hLayoutMat4->addWidget(qMat->getQDoubleSpinBox(15));
 					}
 					
 					vLayoutMat->addLayout(hLayoutMat1);
@@ -235,27 +210,30 @@ void ObjectQtWrapper::slotObjectClicked()
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_STRING)
 			{
 				Engine::Entity::Property<CL_String> *prop = static_cast<Engine::Entity::Property<CL_String>*>(property);
-				QLineEdit* lineedit = new QLineEdit();
-				lineedit->setText(prop->Get().c_str());
-				hLayout->addWidget(lineedit);
+				QLineEditWrapper* lineedit = new QLineEditWrapper(this, *prop);
+				wrappers.push_back(lineedit);
+				hLayout->addWidget(lineedit->getQLineEdit());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_UNSIGNED_INT)
 			{
 				Engine::Entity::Property<unsigned int> *prop = static_cast<Engine::Entity::Property<unsigned int>*>(property);
-				QSpinBoxWrapper* spinbox = new QSpinBoxWrapper(*prop);
+				QSpinBoxWrapper* spinbox = new QSpinBoxWrapper(this, *prop);
+				wrappers.push_back(spinbox);
 				hLayout->addWidget(spinbox->getQSpinBox());
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC2)
 			{
 				Engine::Entity::Property<CL_Vec2f> *prop = static_cast<Engine::Entity::Property<CL_Vec2f>*>(property);
-				QVectorWrapper *qVec = new QVectorWrapper(*prop);
+				QVectorWrapper *qVec = new QVectorWrapper(this, *prop);
+				wrappers.push_back(qVec);
 				hLayout->addWidget(qVec->getQDoubleSpinBox(0));
 				hLayout->addWidget(qVec->getQDoubleSpinBox(1));
 			}
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC3)
 			{
 				Engine::Entity::Property<CL_Vec3f> *prop = static_cast<Engine::Entity::Property<CL_Vec3f>*>(property);
-				QVectorWrapper *qVec = new QVectorWrapper(*prop);
+				QVectorWrapper *qVec = new QVectorWrapper(this, *prop);
+				wrappers.push_back(qVec);
 				hLayout->addWidget(qVec->getQDoubleSpinBox(0));
 				hLayout->addWidget(qVec->getQDoubleSpinBox(1));
 				hLayout->addWidget(qVec->getQDoubleSpinBox(2));
@@ -263,7 +241,8 @@ void ObjectQtWrapper::slotObjectClicked()
 			else if(property->GetTypeId() == Engine::Entity::TypeSerializer::TYPE_VEC4)
 			{
 				Engine::Entity::Property<CL_Vec4f> *prop = static_cast<Engine::Entity::Property<CL_Vec4f>*>(property);
-				QVectorWrapper *qVec = new QVectorWrapper(*prop);
+				QVectorWrapper *qVec = new QVectorWrapper(this, *prop);
+				wrappers.push_back(qVec);
 				hLayout->addWidget(qVec->getQDoubleSpinBox(0));
 				hLayout->addWidget(qVec->getQDoubleSpinBox(1));
 				hLayout->addWidget(qVec->getQDoubleSpinBox(2));

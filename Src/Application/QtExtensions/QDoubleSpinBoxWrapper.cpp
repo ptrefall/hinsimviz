@@ -1,8 +1,10 @@
 #include "QDoubleSpinBoxWrapper.h"
+#include "ObjectQtWrapper.h"
 
-QDoubleSpinBoxWrapper::QDoubleSpinBoxWrapper(Engine::Entity::Property<double> property)
+QDoubleSpinBoxWrapper::QDoubleSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<double> property)
 : slotChanged(false), propChanged(false)
 {
+	this->qObj = qObj;
 	dProperty = property;
 
 	spinbox = new QDoubleSpinBox();
@@ -12,9 +14,10 @@ QDoubleSpinBoxWrapper::QDoubleSpinBoxWrapper(Engine::Entity::Property<double> pr
 	connect(spinbox, SIGNAL( valueChanged(double) ), this, SLOT( slotDValueChanged(double) ));
 }
 
-QDoubleSpinBoxWrapper::QDoubleSpinBoxWrapper(Engine::Entity::Property<float> property)
+QDoubleSpinBoxWrapper::QDoubleSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<float> property)
 : slotChanged(false), propChanged(false)
 {
+	this->qObj = qObj;
 	fProperty = property;
 
 	spinbox = new QDoubleSpinBox();
@@ -30,6 +33,9 @@ QDoubleSpinBoxWrapper::~QDoubleSpinBoxWrapper()
 
 void QDoubleSpinBoxWrapper::OnDPropertyChanged(const double &oldValue, const double &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;
@@ -43,6 +49,9 @@ void QDoubleSpinBoxWrapper::OnDPropertyChanged(const double &oldValue, const dou
 
 void QDoubleSpinBoxWrapper::OnFPropertyChanged(const float &oldValue, const float &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;

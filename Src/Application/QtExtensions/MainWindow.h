@@ -11,6 +11,8 @@ namespace Engine {
 	namespace Scene { class Object; }
 }
 
+class ObjectQtWrapper;
+
 class MainWindow : public QMainWindow, public Ui::MainWindow, public Engine::GUI::IMainGuiManager
 {
 Q_OBJECT
@@ -24,6 +26,8 @@ public:
 
 	virtual void setCaptionText(const char *text);
 	virtual void addObject(const char *name, Engine::Scene::Object *obj);
+	
+	void setSelectedObj(ObjectQtWrapper *obj);
 
 	QGridLayout *propertiesLayout;
 
@@ -33,6 +37,7 @@ private:
 	virtual void mouseMoveEvent(QMouseEvent *);
 
 	Engine::Core::CoreManager *coreMgr;
+	ObjectQtWrapper *selectedObj;
 
 private slots:
     void slotClose();

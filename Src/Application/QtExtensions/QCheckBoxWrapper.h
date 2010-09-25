@@ -5,10 +5,12 @@
 #include <QtGui/QCheckBox>
 #include <Depends/Entity/Property.h>
 
+class ObjectQtWrapper;
+
 class QCheckBoxWrapper : public IWrapper
 {
 public:
-	QCheckBoxWrapper(Engine::Entity::Property<bool> property);
+	QCheckBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<bool> property);
 	virtual ~QCheckBoxWrapper();
 
 	QCheckBox *getQCheckBox() const { return checkbox; }
@@ -19,6 +21,8 @@ private:
 	CL_Slot slotPropertyChanged;
 	QCheckBox *checkbox;
 	Engine::Entity::Property<bool> property;
+
+	ObjectQtWrapper *qObj;
 
 	bool slotChanged;
 	bool propChanged;

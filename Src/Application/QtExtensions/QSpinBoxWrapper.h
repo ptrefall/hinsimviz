@@ -5,11 +5,13 @@
 #include <QtGui/QSpinBox>
 #include <Depends/Entity/Property.h>
 
+class ObjectQtWrapper;
+
 class QSpinBoxWrapper : public IWrapper
 {
 public:
-	QSpinBoxWrapper(Engine::Entity::Property<int> property);
-	QSpinBoxWrapper(Engine::Entity::Property<unsigned int> property);
+	QSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<int> property);
+	QSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<unsigned int> property);
 	virtual ~QSpinBoxWrapper();
 
 	QSpinBox *getQSpinBox() const { return spinbox; }
@@ -24,6 +26,8 @@ private:
 	QSpinBox *spinbox;
 	Engine::Entity::Property<int> iProperty;
 	Engine::Entity::Property<unsigned int> uProperty;
+
+	ObjectQtWrapper *qObj;
 
 	bool slotChanged;
 	bool propChanged;

@@ -320,6 +320,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\Src\Application\QtExtensions\QMatrixWrapper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\Src\Application\QtExtensions\QMatrixWrapper.h"
+					>
+				</File>
+				<File
 					RelativePath="..\Src\Application\QtExtensions\QSpinBoxWrapper.cpp"
 					>
 				</File>

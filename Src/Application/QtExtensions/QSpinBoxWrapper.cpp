@@ -1,8 +1,10 @@
 #include "QSpinBoxWrapper.h"
+#include "ObjectQtWrapper.h"
 
-QSpinBoxWrapper::QSpinBoxWrapper(Engine::Entity::Property<int> property)
+QSpinBoxWrapper::QSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<int> property)
 : slotChanged(false), propChanged(false)
 {
+	this->qObj = qObj;
 	iProperty = property;
 
 	spinbox = new QSpinBox();
@@ -12,9 +14,10 @@ QSpinBoxWrapper::QSpinBoxWrapper(Engine::Entity::Property<int> property)
 	connect(spinbox, SIGNAL( valueChanged(int) ), this, SLOT( slotIValueChanged(int) ));
 }
 
-QSpinBoxWrapper::QSpinBoxWrapper(Engine::Entity::Property<unsigned int> property)
+QSpinBoxWrapper::QSpinBoxWrapper(ObjectQtWrapper *qObj, Engine::Entity::Property<unsigned int> property)
 : slotChanged(false), propChanged(false)
 {
+	this->qObj = qObj;
 	uProperty = property;
 
 	spinbox = new QSpinBox();
@@ -30,6 +33,9 @@ QSpinBoxWrapper::~QSpinBoxWrapper()
 
 void QSpinBoxWrapper::OnIPropertyChanged(const int &oldValue, const int &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;
@@ -43,6 +49,9 @@ void QSpinBoxWrapper::OnIPropertyChanged(const int &oldValue, const int &newValu
 
 void QSpinBoxWrapper::OnUPropertyChanged(const unsigned int &oldValue, const unsigned int &newValue)
 {
+	if(!qObj->isSelected())
+		return;
+
 	if(!slotChanged)
 	{
 		propChanged = true;

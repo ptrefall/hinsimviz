@@ -4,7 +4,7 @@
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent, Qt::WFlags flags)
-: QMainWindow(parent, flags), coreMgr(NULL), propertiesLayout(NULL)
+: QMainWindow(parent, flags), coreMgr(NULL), propertiesLayout(NULL), selectedObj(NULL)
 {
     setupUi(this);
 	connect(action_close, SIGNAL( triggered() ), this, SLOT( slotClose() ));
@@ -77,4 +77,12 @@ void MainWindow::addObject(const char *name, Engine::Scene::Object *obj)
 
 	ObjectQtWrapper *objWrapper = new ObjectQtWrapper(obj, this);
 	this->menuObjects->addAction(objWrapper->getAction());
+}
+
+void MainWindow::setSelectedObj(ObjectQtWrapper *obj)
+{
+	if(selectedObj)
+		selectedObj->deselect();
+	selectedObj = obj;
+	selectedObj->select();
 }
