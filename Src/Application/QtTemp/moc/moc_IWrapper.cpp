@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'IWrapper.h'
 **
-** Created: Sat 25. Sep 02:36:10 2010
+** Created: Sat 25. Sep 14:05:26 2010
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.3)
 **
 ** WARNING! All changes made in this file will be lost!
